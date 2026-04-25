@@ -1,0 +1,1520 @@
+{
+  "id": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a",
+  "name": "Create Task - Sample UI Canvas",
+  "label": "Create Task - Sample UI Canvas",
+  "projectId": "0g8C6qP1uPIV6TCi1FaC",
+  "createdBy": "cGraXoob53Yz10KUWi4hOv20U673",
+  "createdAt": {
+    "seconds": 1775922747,
+    "nanoseconds": 614000000
+  },
+  "updatedAt": {
+    "seconds": 1775924040,
+    "nanoseconds": 291000000
+  },
+  "description": "This template demonstrates the full power of Canvas Driven Architecture (CDA) through a real-world Project Management Task Creation form. It includes all 16 component types available in the UI Canvas system, organized into 6 logical groups: Basic Information, Assignment & Priority, Dates & Time, Attachments & Links, Checklist, and Subtasks Table. Each input follows the single-responsibility principle, meaning every field has a clear purpose and belongs to exactly one group. \n\nThe form implements a three-tier User Access Control (UAC) system with Admin, Manager, and User roles, where each component can be set to Edit, Read-Only, or Hidden per role. \n\nFor example, sensitive fields like \"Assigned To\" and \"Story Points\" are hidden from regular users, while \"Project\" is read-only to prevent unauthorized changes. T\n\nhe Subtasks section uses a Table component to demonstrate how relational data can be managed inline within a canvas form. File Picker, Image, Hyperlink, and YouTube components showcase how multimedia and external references are handled natively without custom code. \n\nThis template serves as a reference implementation for teams learning CDA, showing how UI structure, access control, and component hierarchy work together in a single canvas definition.\n\nThis template demonstrates the full power of Canvas Driven Architecture (CDA) through a real-world Project Management Task Creation form. It includes all 16 component types available in the UI Canvas system, organized into 6 logical groups: Basic Information, Assignment & Priority, Dates & Time, Attachments & Links, Checklist, and Subtasks Table. Each input follows the single-responsibility principle, meaning every field has a clear purpose and belongs to exactly one group. The form implements a three-tier User Access Control (UAC) system with Admin, Manager, and User roles, where each component can be set to Edit, Read-Only, or Hidden per role. For example, sensitive fields like Assigned To and Story Points are hidden from regular users, while Project is read-only to prevent unauthorized changes. The Subtasks section uses a Table component to demonstrate how relational data can be managed inline within a canvas form. File Picker, Image, Hyperlink, and YouTube components showcase how multimedia and external references are handled natively without custom code. This template serves as a reference implementation for teams learning CDA, showing how UI structure, access control, and component hierarchy work together in a single canvas definition.\n\nThis template demonstrates the full power of Canvas Driven Architecture (CDA) through a real-world Project Management Task Creation form. It includes all 16 component types available in the UI Canvas system, organized into 6 logical groups: Basic Information, Assignment & Priority, Dates & Time, Attachments & Links, Checklist, and Subtasks Table. Each input follows the single-responsibility principle, meaning every field has a clear purpose and belongs to exactly one group. The form implements a three-tier User Access Control (UAC) system with Admin, Manager, and User roles, where each component can be set to Edit, Read-Only, or Hidden per role. For example, sensitive fields like Assigned To and Story Points are hidden from regular users, while Project is read-only to prevent unauthorized changes. The Subtasks section uses a Table component to demonstrate how relational data can be managed inline within a canvas form. File Picker, Image, Hyperlink, and YouTube components showcase how multimedia and external references are handled natively without custom code. This template serves as a reference implementation for teams learning CDA, showing how UI structure, access control, and component hierarchy work together in a single canvas definition.\n\nThis template demonstrates the full power of Canvas Driven Architecture (CDA) through a real-world Project Management Task Creation form. It includes all 16 component types available in the UI Canvas system, organized into 6 logical groups: Basic Information, Assignment & Priority, Dates & Time, Attachments & Links, Checklist, and Subtasks Table. Each input follows the single-responsibility principle, meaning every field has a clear purpose and belongs to exactly one group. The form implements a three-tier User Access Control (UAC) system with Admin, Manager, and User roles, where each component can be set to Edit, Read-Only, or Hidden per role. For example, sensitive fields like Assigned To and Story Points are hidden from regular users, while Project is read-only to prevent unauthorized changes. The Subtasks section uses a Table component to demonstrate how relational data can be managed inline within a canvas form. File Picker, Image, Hyperlink, and YouTube components showcase how multimedia and external references are handled natively without custom code. This template serves as a reference implementation for teams learning CDA, showing how UI structure, access control, and component hierarchy work together in a single canvas definition.",
+  "canvasDocumentation": {
+    "documentType": "CDA_UI_Canvas_Documentation",
+    "documentVersion": "1.0",
+    "preparedFor": "DPS Import JSON",
+    "preparedFrom": {
+      "source": "uic_ui_canvas code structure + provided functional requirements",
+      "method": "schema-aligned documentation modeling",
+      "notes": [
+        "This block is documentation-focused and independent from sample narrative text.",
+        "The import engine can still use root-level keys (description, userAcceptanceCriteria, input)."
+      ]
+    },
+    "cdaCore": {
+      "chain": "UI -> Handler -> Service -> DB/API",
+      "singleResponsibility": "Each component/input has a single business responsibility",
+      "eventDriven": true,
+      "componentIsolation": true,
+      "dataIsolation": true
+    },
+    "descriptionDocumentation": {
+      "summary": "Task creation canvas for project workflows with role-based field visibility and editing permissions.",
+      "businessGoal": "Enable controlled task creation with consistent validation, auditability, and team-specific access rules.",
+      "scope": [
+        "Task identity inputs",
+        "Assignment and priority controls",
+        "Dates/time estimation",
+        "Attachments and external references",
+        "Checklist and subtasks table"
+      ],
+      "uiViewDocumentation": {
+        "groups": [
+          "Basic Information",
+          "Assignment & Priority",
+          "Dates & Time",
+          "Attachments & Links",
+          "Checklist",
+          "Subtasks"
+        ],
+        "layoutBehavior": [
+          "Group-based rendering",
+          "Conditional visibility for role and state",
+          "Table section visibility driven by checkbox"
+        ],
+        "externalViewSupport": [
+          "external_link",
+          "embedded_code",
+          "upload_image",
+          "clipboard_image"
+        ]
+      }
+    },
+    "uacDocumentation": {
+      "roles": ["Admin", "Manager", "User"],
+      "policies": ["Editable", "ReadOnly", "Hidden"],
+      "documentedRules": {
+        "hiddenForUser": ["Assigned To", "Story Points", "Demo Video Link"],
+        "hiddenForManager": ["Demo Video Link"],
+        "readOnlyForUser": ["Project", "Estimated Hours", "Urgency", "Definition of Done", "Subtasks Table"],
+        "editableForAll": ["Task Title", "Task Description", "Sprint", "Task Type", "Priority"]
+      },
+      "uacMappingSource": "userAcceptanceCriteria + templateDescription"
+    },
+    "inputDocumentation": {
+      "inputSchemaReference": {
+        "required": ["id", "inputName", "componentType", "inputType", "cellNo", "order"],
+        "optional": ["manualDescription", "templateDescription", "apiCall", "databaseRelation", "fkGroupId", "fkTableId", "css", "hasLabel", "content"]
+      },
+      "supportedInputTypes": ["IN", "GRP", "TBL"],
+      "supportedComponentTypes": [
+        "txt", "cmb", "btn", "txa", "rbtn", "irbtn", "cbox", "date", "time", "lbl", "icbox", "file", "hlink", "img", "tbl", "grp", "ytube"
+      ],
+      "descriptionSources": {
+        "manualBehaviorDescriptions": "input.*.manualDescription",
+        "roleOrTemplateDescriptions": "input.*.templateDescription",
+        "fieldSummaryDescription": "input.*.description"
+      },
+      "eventNamingConvention": ["onload", "onchange", "onclick", "onmouseover", "ondblclick", "onkeypress", "onrightclick"]
+    },
+    "importReadiness": {
+      "status": "ready",
+      "checklist": [
+        "Top-level canvas keys exist",
+        "UAC array exists",
+        "Input map exists",
+        "Group and table references are structurally represented",
+        "Manual/template descriptions are documented",
+        "Component catalog is present"
+      ]
+    }
+  },
+  "userAcceptanceCriteria": [
+    {
+      "id": "uac-001",
+      "taskIds": [],
+      "title": "Admin can edit all fields including Assigned To, Story Points, and Demo Video",
+      "description": "<p>Admin role has unrestricted access to all 22 input fields in the Create Task form. This includes sensitive management fields such as Assigned To, Story Points, and the YouTube Demo Video component that are hidden or restricted for other roles.</p><p><br></p><p>This full-access behavior is intentional in CDA to allow administrators to configure, test, and manage all canvas inputs during both development and production stages. Admin access serves as the baseline reference when defining UAC rules for lower-privileged roles.</p>"
+    },
+    {
+      "id": "uac-002",
+      "description": "<p>Manager role has edit access to nearly all fields in the form, including sensitive inputs like Assigned To and Story Points that are hidden from regular users. The only exception is the YouTube Demo Video component, which must be completely hidden from the Manager role and should not render in the UI at all.</p><p>This distinction exists because Demo Video links are considered administrative-level content managed exclusively by system administrators. Hiding this field from Managers ensures that video references are only added through a controlled, admin-approved process.</p>",
+      "title": "Manager can edit all fields except Demo Video which must be hidden",
+      "taskIds": []
+    },
+    {
+      "taskIds": [],
+      "title": "User cannot see Assigned To, Story Points, and Demo Video fields",
+      "description": "<p>Regular User role has three fields completely removed from the rendered UI: Assigned To (Select component), Story Points (Edit Line), and Demo Video (YouTube component). These fields are not just disabled — they are entirely hidden so the user is not aware of their existence in the form structure.</p><p>This design follows the CDA principle of role-based visibility, where the UI surface area itself changes based on the authenticated user's role. Hiding these fields reduces cognitive load for regular users and prevents unauthorized attempts to guess or manipulate values that fall outside their responsibility.</p>",
+      "id": "uac-003"
+    },
+    {
+      "taskIds": [],
+      "description": "<p>The Project dropdown (Select / Cmb component) is visible to the User role but rendered in a read-only state. The currently selected project value is displayed clearly, but the dropdown interaction is disabled so the user cannot switch the task to a different project.</p><p>This restriction reflects a real-world business rule where regular team members can create tasks only within a pre-assigned project context. Allowing users to freely change the project association could result in tasks being misrouted or lost across project boundaries, which CDA prevents through UAC configuration at the canvas level.</p>",
+      "title": "User sees Project field as read-only and cannot change it",
+      "id": "uac-004"
+    },
+    {
+      "id": "uac-005",
+      "title": "Task Title, Description, Sprint, Task Type fields are editable for all roles",
+      "description": "<p>These four fields represent the core task identity inputs and are fully editable for Admin, Manager, and User roles without any restrictions. Every team member regardless of their permission level must be able to define what the task is, which sprint it belongs to, and what type of work it represents.</p><p><br></p><p>In CDA, fields that are universally editable are explicitly documented in UAC to confirm the decision was intentional rather than a configuration oversight. This clarity ensures that future developers or canvas editors do not accidentally restrict these fields when adjusting role permissions for other inputs.</p>",
+      "taskIds": []
+    },
+    {
+      "id": "uac-006",
+      "title": "Task ID label is auto-generated and read-only for all roles",
+      "description": "<p>The Task ID is implemented as a Label (Lbl) component that displays a system-generated unique identifier assigned at the time of task creation. It is read-only for all roles including Admin, meaning no user at any permission level can manually edit or override this value through the UI.</p><p>This behavior demonstrates an important CDA pattern: some fields carry the same UAC rule across all roles, and documenting this explicitly prevents ambiguity. The Label component is the correct choice here because it communicates display-only intent at the component type level itself, reinforcing the read-only constraint through both UAC configuration and component selection.</p>",
+      "taskIds": []
+    },
+    {
+      "description": "<p>The Subtasks Table (Tbl component) is visible to the User role and displays all existing subtask rows including their Title, Assignee, Status, and Due Date columns. However, all interactive table actions such as adding new rows, editing cell values, and deleting rows are disabled for this role.</p><p>Admin and Manager roles retain full table management capabilities. This split behavior demonstrates how the Table component in CDA supports role-based interactivity, where the same component renders differently depending on the authenticated user's UAC configuration without requiring separate components or conditional rendering logic in the codebase.</p>",
+      "title": "User sees Subtasks Table in read-only mode, cannot add or edit rows",
+      "taskIds": [],
+      "id": "uac-007"
+    },
+    {
+      "title": "Urgency field is editable for Admin and Manager, read-only for User",
+      "description": "<p>The Urgency field uses an Inner Radio (IRbtn) component with two options: Normal and Urgent. Admin and Manager can freely select between these options to reflect the actual urgency level of the task. For the User role, the component is rendered in a read-only state showing the currently selected value without allowing interaction.</p><p>This UAC pattern illustrates how radio-type components behave under role restrictions in CDA. Rather than hiding urgency from users entirely, the decision was made to keep it visible but non-editable so that users remain informed about the task's urgency classification while the authority to change it stays with management-level roles.</p>",
+      "taskIds": [],
+      "id": "uac-008"
+    },
+    {
+      "id": "uac-009",
+      "title": "Estimated Hours field is editable for Admin and Manager, read-only for User",
+      "description": "<p>The Estimated Hours input is an Edit Line (Txt) component that allows Admin and Manager to enter a numeric value representing the expected effort for the task. For User role, the field is visible but rendered as a disabled input, showing the estimated value without allowing any modifications.</p><p>Keeping this field read-only for users reflects a common project management practice where effort estimation is a responsibility of leads and managers rather than individual contributors. In CDA, this distinction is captured cleanly at the UAC layer without any conditional logic in the component code itself, keeping the frontend implementation simple and the business rule explicit in the canvas definition.</p>",
+      "taskIds": []
+    },
+    {
+      "taskIds": [],
+      "title": "Definition of Done checkboxes are editable for Admin and Manager, read-only for User",
+      "description": "<p>The Definition of Done section uses an Inner Checkbox (Icbox) component group containing three items: Code Review, Tests Written, and Deployed. Admin and Manager can check and uncheck these items to track completion criteria as the task progresses through the workflow. User role sees the same checkboxes but in a fully disabled state that reflects the current checked values without allowing changes.</p><p>This UAC configuration ensures that completion criteria are managed by accountable roles rather than being self-reported by task assignees. It also demonstrates how the Inner Checkbox component in CDA supports granular access control at the group level, where the entire checkbox set shares a single UAC rule rather than requiring individual configuration per checkbox item.</p>",
+      "id": "uac-010"
+    }
+  ],
+  "externalViewLinks": [],
+  "input": {
+    "grp-attachments-links-001": {
+      "templateDescription": {},
+      "cellNo": "12",
+      "inputType": "GRP",
+      "fkTableId": "",
+      "content": "",
+      "componentType": "grp",
+      "inputName": "Attachments & Links",
+      "order": 18,
+      "css": {
+        "componentCss": ""
+      },
+      "hasLabel": true,
+      "manualDescription": {
+        "grp-attachments-onload-001": {
+          "id": "grp-attachments-onload-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Attachments & Links group must be visible. This group demonstrates the management of multimedia and external resources: it includes File Picker, Hyperlink, Image, and YouTube components. The Demo Video field must be visible only to Admin.",
+          "inputId": "grp-attachments-links-001",
+          "inputName": "Attachments & Links",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload"
+        }
+      },
+      "id": "grp-attachments-links-001",
+      "fkGroupId": ""
+    },
+    "date-start-date-001": {
+      "inputName": "Start Date",
+      "componentType": "date",
+      "css": {
+        "componentCss": ""
+      },
+      "order": 14,
+      "hasLabel": true,
+      "fkGroupId": "grp-dates-time-001",
+      "id": "date-start-date-001",
+      "manualDescription": {
+        "date-start-onchange-001": {
+          "id": "date-start-onchange-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When Start Date changes, it must be validated that Due Date is not earlier than Start Date. If Due Date is earlier than Start Date, an error message must be shown and Due Date must be reset.",
+          "inputId": "date-start-date-001",
+          "inputName": "Start Date",
+          "event": "onchange",
+          "uiId": "cda-template-create-task-001"
+        },
+        "date-start-onload-001": {
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Start Date picker must show today’s date by default. All roles must be allowed to edit it.",
+          "id": "date-start-onload-001",
+          "inputName": "Start Date",
+          "event": "onload",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "date-start-date-001"
+        }
+      },
+      "cellNo": "6",
+      "inputType": "IN",
+      "templateDescription": {
+        "date-start-tpl-001": {
+          "uiName": "CDA Template - Create Task",
+          "description": "Is Editable - All Roles",
+          "id": "date-start-tpl-001",
+          "inputName": "Start Date",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "date-start-date-001"
+        }
+      },
+      "fkTableId": "",
+      "content": ""
+    },
+    "txt-estimated-hours-001": {
+      "fkTableId": "",
+      "templateDescription": {
+        "txt-est-hours-tpl-001": {
+          "uiName": "CDA Template - Create Task",
+          "description": "Is Readonly - User Role",
+          "id": "txt-est-hours-tpl-001",
+          "inputName": "Estimated Hours",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "txt-estimated-hours-001"
+        }
+      },
+      "cellNo": "6",
+      "inputType": "IN",
+      "content": "",
+      "order": 17,
+      "css": {
+        "componentCss": ""
+      },
+      "componentType": "txt",
+      "inputName": "Estimated Hours",
+      "manualDescription": {
+        "txt-est-hours-onload-001": {
+          "id": "txt-est-hours-onload-001",
+          "description": "When the page loads, the Estimated Hours input must be empty. For the User role, this field must be shown as read-only. When Estimated Time is selected, the value is calculated automatically.",
+          "uiName": "CDA Template - Create Task",
+          "inputId": "txt-estimated-hours-001",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload",
+          "inputName": "Estimated Hours"
+        },
+        "txt-est-hours-onchange-001": {
+          "id": "txt-est-hours-onchange-001",
+          "description": "When Estimated Hours is changed manually, only a positive number (from 0.5 to 999) must be accepted. Admin and Manager can also change this field directly, and in that case the Estimated Time field must also be updated.",
+          "uiName": "CDA Template - Create Task",
+          "inputId": "txt-estimated-hours-001",
+          "uiId": "cda-template-create-task-001",
+          "event": "onchange",
+          "inputName": "Estimated Hours"
+        }
+      },
+      "id": "txt-estimated-hours-001",
+      "fkGroupId": "grp-dates-time-001",
+      "hasLabel": true
+    },
+    "lbl-task-id-001": {
+      "hasLabel": true,
+      "fkGroupId": "grp-checklist-001",
+      "id": "lbl-task-id-001",
+      "manualDescription": {
+        "lbl-task-id-onload-001": {
+          "inputName": "Task ID",
+          "event": "onload",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "lbl-task-id-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Task ID label must be filled with a unique identifier automatically generated by the system. The format must be TASK-{timestamp}. This field is read-only for all roles — no role can change it.",
+          "id": "lbl-task-id-onload-001"
+        }
+      },
+      "inputName": "Task ID",
+      "componentType": "lbl",
+      "css": {
+        "containerCss": "font-weight: 700;\ncolor: #595959;\nfont-size: 13px;"
+      },
+      "order": 26,
+      "content": "",
+      "inputType": "IN",
+      "cellNo": "12",
+      "templateDescription": {
+        "lbl-task-id-tpl-001": {
+          "id": "lbl-task-id-tpl-001",
+          "description": "Is Readonly - All Roles",
+          "uiName": "CDA Template - Create Task",
+          "inputId": "lbl-task-id-001",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Task ID"
+        }
+      },
+      "fkTableId": ""
+    },
+    "cbox-has-subtasks-001": {
+      "css": {
+        "componentCss": ""
+      },
+      "order": 24,
+      "inputName": "Has Subtasks?",
+      "componentType": "cbox",
+      "fkGroupId": "grp-checklist-001",
+      "manualDescription": {
+        "cbox-subtasks-onload-001": {
+          "id": "cbox-subtasks-onload-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Has Subtasks checkbox must be unchecked. All roles must be allowed to edit it.",
+          "inputId": "cbox-has-subtasks-001",
+          "inputName": "Has Subtasks?",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload"
+        },
+        "cbox-subtasks-onchange-001": {
+          "description": "When Has Subtasks is checked, the Subtasks Table must become visible and the user must be shown an empty row to add a subtask. When it is unchecked, the Subtasks Table must be hidden.",
+          "uiName": "CDA Template - Create Task",
+          "id": "cbox-subtasks-onchange-001",
+          "event": "onchange",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Has Subtasks?",
+          "inputId": "cbox-has-subtasks-001"
+        }
+      },
+      "id": "cbox-has-subtasks-001",
+      "hasLabel": true,
+      "fkTableId": "",
+      "templateDescription": {
+        "cbox-subtasks-tpl-001": {
+          "inputId": "cbox-has-subtasks-001",
+          "inputName": "Has Subtasks?",
+          "uiId": "cda-template-create-task-001",
+          "id": "cbox-subtasks-tpl-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "Is Editable - All Roles"
+        }
+      },
+      "inputType": "IN",
+      "cellNo": "3",
+      "content": ""
+    },
+    "cmb-assigned-to-001": {
+      "css": {
+        "componentCss": ""
+      },
+      "order": 0,
+      "inputName": "Assigned To",
+      "componentType": "cmb",
+      "fkGroupId": "grp-assignment-priority-001",
+      "manualDescription": {
+        "cmb-assigned-onchange-001": {
+          "uiId": "cda-template-create-task-001",
+          "event": "onchange",
+          "inputName": "Assigned To",
+          "inputId": "cmb-assigned-to-001",
+          "description": "When Assigned To changes, the selected user's name and avatar must be displayed next to the field. Admin and Manager roles can edit this field.",
+          "uiName": "CDA Template - Create Task",
+          "id": "cmb-assigned-onchange-001"
+        },
+        "cmb-assigned-onload-001": {
+          "inputId": "cmb-assigned-to-001",
+          "inputName": "Assigned To",
+          "event": "onload",
+          "uiId": "cda-template-create-task-001",
+          "id": "cmb-assigned-onload-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the list of members of the selected project must be loaded into the Assigned To dropdown. For the User role, this field must be completely hidden — it must not be rendered."
+        }
+      },
+      "id": "cmb-assigned-to-001",
+      "hasLabel": true,
+      "fkTableId": "",
+      "templateDescription": {
+        "cmb-assigned-tpl-001": {
+          "uiName": "CDA Template - Create Task",
+          "description": "Is Hidden - User Role",
+          "id": "cmb-assigned-tpl-001",
+          "inputName": "Assigned To",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "cmb-assigned-to-001"
+        }
+      },
+      "inputType": "IN",
+      "cellNo": "12",
+      "content": "John Muller\nAnar Rustamov\nEven Smith"
+    },
+    "file-attachments-001": {
+      "fkTableId": "",
+      "templateDescription": {
+        "file-attach-tpl-001": {
+          "inputId": "file-attachments-001",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Attachments",
+          "id": "file-attach-tpl-001",
+          "description": "Is Editable - All Roles",
+          "uiName": "CDA Template - Create Task"
+        }
+      },
+      "cellNo": "12",
+      "inputType": "IN",
+      "content": "",
+      "order": 19,
+      "css": {
+        "componentCss": ""
+      },
+      "componentType": "file",
+      "inputName": "Attachments",
+      "manualDescription": {
+        "file-attach-onload-001": {
+          "id": "file-attach-onload-001",
+          "description": "When the page loads, the Attachments file picker must be ready for use. All roles must be allowed to upload files. Supported formats: PDF, PNG, JPG, DOCX, XLSX, with a maximum size of 10MB.",
+          "uiName": "CDA Template - Create Task",
+          "inputId": "file-attachments-001",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload",
+          "inputName": "Attachments"
+        },
+        "file-attach-onchange-001": {
+          "uiName": "CDA Template - Create Task",
+          "description": "When a file is selected, the file name, size, and type must be displayed. If a file larger than 10MB is selected, an error message must be shown. Multiple files must be selectable at the same time.",
+          "id": "file-attach-onchange-001",
+          "inputName": "Attachments",
+          "event": "onchange",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "file-attachments-001"
+        }
+      },
+      "id": "file-attachments-001",
+      "fkGroupId": "grp-attachments-links-001",
+      "hasLabel": true
+    },
+    "txa-task-description-001": {
+      "order": 3,
+      "css": {
+        "componentCss": ""
+      },
+      "componentType": "txa",
+      "inputName": "Task Description",
+      "manualDescription": {
+        "txa-description-onload-001": {
+          "id": "txa-description-onload-001",
+          "description": "When the page loads, the Task Description textarea must be empty. All roles — Admin, Manager, and User — must be allowed to edit it.",
+          "uiName": "CDA Template - Create Task",
+          "inputId": "txa-task-description-001",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload",
+          "inputName": "Task Description"
+        },
+        "txa-description-onchange-001": {
+          "inputId": "txa-task-description-001",
+          "inputName": "Task Description",
+          "event": "onchange",
+          "uiId": "cda-template-create-task-001",
+          "id": "txa-description-onchange-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When Task Description changes, the maximum limit of 2000 characters must be checked. If the limit is exceeded, the user must be shown a warning."
+        }
+      },
+      "id": "txa-task-description-001",
+      "fkGroupId": "grp-basic-info-001",
+      "hasLabel": true,
+      "fkTableId": "",
+      "templateDescription": {
+        "txa-description-tpl-001": {
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Task Description",
+          "inputId": "txa-task-description-001",
+          "description": "Is Editable - All Roles",
+          "uiName": "CDA Template - Create Task",
+          "id": "txa-description-tpl-001"
+        }
+      },
+      "cellNo": "12",
+      "inputType": "IN",
+      "content": ""
+    },
+    "txt-task-title-001": {
+      "fkTableId": "",
+      "cellNo": "12",
+      "inputType": "IN",
+      "templateDescription": {
+        "txt-task-title-tpl-001": {
+          "description": "Is Editable - All Roles",
+          "uiName": "CDA Template - Create Task",
+          "id": "txt-task-title-tpl-001",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Task Title",
+          "inputId": "txt-task-title-001"
+        }
+      },
+      "content": "",
+      "order": 2,
+      "css": {
+        "componentCss": ""
+      },
+      "componentType": "txt",
+      "inputName": "Task Title",
+      "id": "txt-task-title-001",
+      "manualDescription": {
+        "txt-task-title-onload-001": {
+          "description": "When the page loads, the Task Title input must be empty and active. Admin, Manager, and User roles can edit this field.",
+          "uiName": "CDA Template - Create Task",
+          "id": "txt-task-title-onload-001",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload",
+          "inputName": "Task Title",
+          "inputId": "txt-task-title-001"
+        },
+        "txt-task-title-onchange-001": {
+          "inputId": "txt-task-title-001",
+          "event": "onchange",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Task Title",
+          "id": "txt-task-title-onchange-001",
+          "description": "When Task Title changes, it must be validated to ensure it contains at least 2 and at most 200 characters. If the condition is not met, a validation error must be displayed.",
+          "uiName": "CDA Template - Create Task"
+        }
+      },
+      "fkGroupId": "grp-basic-info-001",
+      "hasLabel": true
+    },
+    "hlink-reference-url-001": {
+      "content": "",
+      "fkTableId": "",
+      "cellNo": "12",
+      "inputType": "IN",
+      "templateDescription": {
+        "hlink-ref-tpl-001": {
+          "inputId": "hlink-reference-url-001",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Reference URL",
+          "id": "hlink-ref-tpl-001",
+          "description": "Is Editable - All Roles",
+          "uiName": "CDA Template - Create Task"
+        }
+      },
+      "id": "hlink-reference-url-001",
+      "manualDescription": {
+        "hlink-ref-onload-001": {
+          "inputId": "hlink-reference-url-001",
+          "inputName": "Reference URL",
+          "event": "onload",
+          "uiId": "cda-template-create-task-001",
+          "id": "hlink-ref-onload-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Reference URL hyperlink input must be empty. All roles must be allowed to enter a URL. When the entered URL is clicked, it must open in a new tab."
+        },
+        "hlink-ref-onchange-001": {
+          "id": "hlink-ref-onchange-001",
+          "description": "When a Reference URL is entered, the URL format must be validated. For URLs that do not start with https://, https:// must be added automatically. A validation error must be shown for invalid format.",
+          "uiName": "CDA Template - Create Task",
+          "inputId": "hlink-reference-url-001",
+          "uiId": "cda-template-create-task-001",
+          "event": "onchange",
+          "inputName": "Reference URL"
+        }
+      },
+      "fkGroupId": "grp-attachments-links-001",
+      "hasLabel": true,
+      "order": 20,
+      "css": {
+        "componentCss": ""
+      },
+      "componentType": "hlink",
+      "inputName": "Reference URL"
+    },
+    "icbox-definition-of-done-001": {
+      "hasLabel": true,
+      "fkGroupId": "grp-checklist-001",
+      "id": "icbox-definition-of-done-001",
+      "manualDescription": {
+        "icbox-dod-onchange-001": {
+          "inputId": "icbox-definition-of-done-001",
+          "event": "onchange",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Definition of Done",
+          "id": "icbox-dod-onchange-001",
+          "description": "When all Definition of Done checkboxes are selected, a suggestion must be shown to automatically move Status to 'Done'. Only Admin and Manager can change these checkboxes.",
+          "uiName": "CDA Template - Create Task"
+        },
+        "icbox-dod-onload-001": {
+          "inputName": "Definition of Done",
+          "event": "onload",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "icbox-definition-of-done-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Definition of Done inner checkbox group must show Code Review, Tests Written, and Deployed as unchecked. The User role can only view these checkboxes and cannot change them.",
+          "id": "icbox-dod-onload-001"
+        }
+      },
+      "inputName": "Definition of Done",
+      "componentType": "icbox",
+      "css": {
+        "componentCss": ""
+      },
+      "order": 25,
+      "content": "Code Review\nTests Written\nDeployed",
+      "inputType": "IN",
+      "cellNo": "6",
+      "templateDescription": {
+        "icbox-dod-tpl-001": {
+          "uiName": "CDA Template - Create Task",
+          "description": "Is Readonly - User Role",
+          "id": "icbox-dod-tpl-001",
+          "inputName": "Definition of Done",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "icbox-definition-of-done-001"
+        }
+      },
+      "fkTableId": ""
+    },
+    "cmb-task-type-001": {
+      "templateDescription": {
+        "cmb-task-type-tpl-001": {
+          "inputId": "cmb-task-type-001",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Task Type",
+          "id": "cmb-task-type-tpl-001",
+          "description": "Is Editable - All Roles",
+          "uiName": "CDA Template - Create Task"
+        }
+      },
+      "inputType": "IN",
+      "cellNo": "4",
+      "fkTableId": "",
+      "content": "Bug\nFeature\nImprovement\nResearch",
+      "componentType": "cmb",
+      "inputName": "Task Type",
+      "order": 6,
+      "css": {
+        "componentCss": ""
+      },
+      "hasLabel": true,
+      "manualDescription": {
+        "cmb-task-type-onchange-001": {
+          "id": "cmb-task-type-onchange-001",
+          "description": "When Task Type is set to 'Bug', Priority must automatically be set to 'High'. For other types, Priority must remain unchanged.",
+          "uiName": "CDA Template - Create Task",
+          "inputId": "cmb-task-type-001",
+          "uiId": "cda-template-create-task-001",
+          "event": "onchange",
+          "inputName": "Task Type"
+        },
+        "cmb-task-type-onload-001": {
+          "description": "When the page loads, the Task Type dropdown must contain the options Bug, Feature, Improvement, and Research. The default selection must be 'Feature'.",
+          "uiName": "CDA Template - Create Task",
+          "id": "cmb-task-type-onload-001",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload",
+          "inputName": "Task Type",
+          "inputId": "cmb-task-type-001"
+        }
+      },
+      "id": "cmb-task-type-001",
+      "fkGroupId": "grp-basic-info-001"
+    },
+    "02c442ba-88d9-41ce-89be-db0aee0d7e37": {
+      "fkUserStoryId": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a",
+      "hasLabel": true,
+      "content": "",
+      "id": "02c442ba-88d9-41ce-89be-db0aee0d7e37",
+      "inputName": "Create",
+      "componentType": "btn",
+      "inputType": "IN",
+      "cellNo": "3",
+      "order": 31,
+      "fkTableId": ""
+    },
+    "cmb-project-001": {
+      "hasLabel": true,
+      "manualDescription": {
+        "cmb-project-onchange-001": {
+          "uiId": "cda-template-create-task-001",
+          "event": "onchange",
+          "inputName": "Project",
+          "inputId": "cmb-project-001",
+          "description": "When a Project is selected, the Sprint dropdown must be updated with the active sprints related to that project. The previous sprint selection must be reset.",
+          "uiName": "CDA Template - Create Task",
+          "id": "cmb-project-onchange-001"
+        },
+        "cmb-project-onload-001": {
+          "description": "When the page loads, the list of active projects that the current user is a member of must be loaded into the Project dropdown. For the User role, the dropdown must be shown as disabled, and only the selected value must be visible.",
+          "uiName": "CDA Template - Create Task",
+          "id": "cmb-project-onload-001",
+          "event": "onload",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Project",
+          "inputId": "cmb-project-001"
+        }
+      },
+      "id": "cmb-project-001",
+      "fkGroupId": "grp-basic-info-001",
+      "componentType": "cmb",
+      "inputName": "Project",
+      "order": 4,
+      "css": {
+        "componentCss": ""
+      },
+      "content": "Project 1\nProject 2\nProject 3",
+      "templateDescription": {
+        "cmb-project-tpl-001": {
+          "uiName": "CDA Template - Create Task",
+          "description": "Is Readonly - User Role",
+          "id": "cmb-project-tpl-001",
+          "inputName": "Project",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "cmb-project-001"
+        }
+      },
+      "inputType": "IN",
+      "cellNo": "4",
+      "fkTableId": ""
+    },
+    "txt-story-points-001": {
+      "order": 4,
+      "css": {
+        "componentCss": ""
+      },
+      "componentType": "txt",
+      "inputName": "Story Points",
+      "id": "txt-story-points-001",
+      "manualDescription": {
+        "txt-story-onchange-001": {
+          "uiId": "cda-template-create-task-001",
+          "event": "onchange",
+          "inputName": "Story Points",
+          "inputId": "txt-story-points-001",
+          "description": "When Story Points changes, only positive integers (1, 2, 3, 5, 8, 13, 21) must be accepted. If a value that does not match the Fibonacci sequence is entered, a warning must be displayed.",
+          "uiName": "CDA Template - Create Task",
+          "id": "txt-story-onchange-001"
+        },
+        "txt-story-onload-001": {
+          "inputName": "Story Points",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload",
+          "inputId": "txt-story-points-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Story Points input must be empty. For the User role, this field must be completely hidden — it must not be rendered in the UI. Only Admin and Manager can view and change it.",
+          "id": "txt-story-onload-001"
+        }
+      },
+      "fkGroupId": "grp-assignment-priority-001",
+      "hasLabel": true,
+      "fkTableId": "",
+      "cellNo": "4",
+      "inputType": "IN",
+      "templateDescription": {
+        "txt-story-tpl-001": {
+          "inputName": "Story Points",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "txt-story-points-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "Is Hidden - User Role",
+          "id": "txt-story-tpl-001"
+        }
+      },
+      "content": ""
+    },
+    "time-estimated-time-001": {
+      "fkGroupId": "grp-dates-time-001",
+      "id": "time-estimated-time-001",
+      "manualDescription": {
+        "time-estimated-onload-001": {
+          "inputName": "Estimated Time",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload",
+          "inputId": "time-estimated-time-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Estimated Time picker must be empty. Time selection in hh:mm format must be available. All roles must be allowed to edit it.",
+          "id": "time-estimated-onload-001"
+        },
+        "time-estimated-onchange-001": {
+          "uiName": "CDA Template - Create Task",
+          "description": "When Estimated Time changes, the selected time must be converted into minutes and automatically calculated into the Estimated Hours field. For example, if 01:30 is selected, Estimated Hours must be set to 1.5.",
+          "id": "time-estimated-onchange-001",
+          "inputName": "Estimated Time",
+          "uiId": "cda-template-create-task-001",
+          "event": "onchange",
+          "inputId": "time-estimated-time-001"
+        }
+      },
+      "hasLabel": true,
+      "css": {
+        "componentCss": ""
+      },
+      "order": 16,
+      "inputName": "Estimated Time",
+      "componentType": "time",
+      "content": "",
+      "fkTableId": "",
+      "cellNo": "6",
+      "inputType": "IN",
+      "templateDescription": {
+        "time-estimated-tpl-001": {
+          "description": "Is Editable - All Roles",
+          "uiName": "CDA Template - Create Task",
+          "id": "time-estimated-tpl-001",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Estimated Time",
+          "inputId": "time-estimated-time-001"
+        }
+      }
+    },
+    "grp-dates-time-001": {
+      "inputName": "Dates & Time",
+      "componentType": "grp",
+      "css": {
+        "componentCss": ""
+      },
+      "order": 13,
+      "hasLabel": true,
+      "fkGroupId": "",
+      "id": "grp-dates-time-001",
+      "manualDescription": {
+        "grp-dates-onload-001": {
+          "inputName": "Dates & Time",
+          "event": "onload",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "grp-dates-time-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Dates & Time group must be visible. This group manages the task’s time frame: Start Date, Due Date, Estimated Time, and Estimated Hours. This group is visible to all roles, but Estimated Hours can only be changed by Admin and Manager.",
+          "id": "grp-dates-onload-001"
+        }
+      },
+      "inputType": "GRP",
+      "cellNo": "12",
+      "templateDescription": {},
+      "fkTableId": "",
+      "content": ""
+    },
+    "date-due-date-001": {
+      "id": "date-due-date-001",
+      "manualDescription": {
+        "date-due-onchange-001": {
+          "inputId": "date-due-date-001",
+          "inputName": "Due Date",
+          "event": "onchange",
+          "uiId": "cda-template-create-task-001",
+          "id": "date-due-onchange-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When Due Date changes, it must be validated that the selected date is after Start Date. If Urgency is 'Urgent', Due Date must be at least 1 day later than today’s date."
+        },
+        "date-due-onload-001": {
+          "inputName": "Due Date",
+          "event": "onload",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "date-due-date-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Due Date picker must be empty. When a Sprint is selected, the sprint’s end date must automatically be set as the Due Date. All roles must be allowed to edit it.",
+          "id": "date-due-onload-001"
+        }
+      },
+      "fkGroupId": "grp-dates-time-001",
+      "hasLabel": true,
+      "order": 15,
+      "css": {
+        "componentCss": ""
+      },
+      "componentType": "date",
+      "inputName": "Due Date",
+      "content": "",
+      "fkTableId": "",
+      "cellNo": "6",
+      "inputType": "IN",
+      "templateDescription": {
+        "date-due-tpl-001": {
+          "id": "date-due-tpl-001",
+          "description": "Is Editable - All Roles",
+          "uiName": "CDA Template - Create Task",
+          "inputId": "date-due-date-001",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Due Date"
+        }
+      }
+    },
+    "grp-subtasks-table-001": {
+      "id": "grp-subtasks-table-001",
+      "manualDescription": {
+        "grp-subtasks-onload-001": {
+          "inputName": "Subtasks",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload",
+          "inputId": "grp-subtasks-table-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "The Subtasks group must only be visible when the Has Subtasks checkbox is selected. This group includes the Subtasks Table component. The User role can only view the table in read-only mode.",
+          "id": "grp-subtasks-onload-001"
+        }
+      },
+      "fkGroupId": "",
+      "hasLabel": true,
+      "order": 27,
+      "css": {
+        "componentCss": ""
+      },
+      "componentType": "grp",
+      "inputName": "Subtasks",
+      "content": "",
+      "fkTableId": "",
+      "inputType": "GRP",
+      "cellNo": "12",
+      "templateDescription": {}
+    },
+    "irbtn-urgency-001": {
+      "fkGroupId": "grp-assignment-priority-001",
+      "manualDescription": {
+        "irbtn-urgency-onchange-001": {
+          "uiId": "cda-template-create-task-001",
+          "event": "onchange",
+          "inputName": "Urgency",
+          "inputId": "irbtn-urgency-001",
+          "description": "When Urgency is set to 'Urgent', it must be validated that the Due Date is not less than 3 days from today’s date. If the condition is not met, a warning message must be shown. Only Admin and Manager can change this field.",
+          "uiName": "CDA Template - Create Task",
+          "id": "irbtn-urgency-onchange-001"
+        },
+        "irbtn-urgency-onload-001": {
+          "id": "irbtn-urgency-onload-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Urgency inner radio must display the options Normal and Urgent. The default value must be 'Normal'. For the User role, this field must be rendered as read-only and cannot be changed.",
+          "inputId": "irbtn-urgency-001",
+          "inputName": "Urgency",
+          "event": "onload",
+          "uiId": "cda-template-create-task-001"
+        }
+      },
+      "id": "irbtn-urgency-001",
+      "hasLabel": true,
+      "css": {
+        "componentCss": ""
+      },
+      "order": 2,
+      "inputName": "Urgency",
+      "componentType": "rbtn",
+      "content": "Normal\nUrgent",
+      "fkTableId": "",
+      "templateDescription": {
+        "irbtn-urgency-tpl-001": {
+          "inputId": "irbtn-urgency-001",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Urgency",
+          "id": "irbtn-urgency-tpl-001",
+          "description": "Is Readonly - User Role",
+          "uiName": "CDA Template - Create Task"
+        }
+      },
+      "inputType": "IN",
+      "cellNo": "6"
+    },
+    "rbtn-priority-001": {
+      "fkTableId": "",
+      "inputType": "IN",
+      "cellNo": "6",
+      "templateDescription": {
+        "rbtn-priority-tpl-001": {
+          "id": "rbtn-priority-tpl-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "Is Editable - All Roles",
+          "inputId": "rbtn-priority-001",
+          "inputName": "Priority",
+          "uiId": "cda-template-create-task-001"
+        }
+      },
+      "content": "Low\nMedium\nHigh\nCritical",
+      "order": 1,
+      "css": {
+        "componentCss": ""
+      },
+      "componentType": "rbtn",
+      "inputName": "Priority",
+      "id": "rbtn-priority-001",
+      "manualDescription": {
+        "rbtn-priority-onchange-001": {
+          "id": "rbtn-priority-onchange-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When Priority is set to 'Critical', Urgency must automatically be set to 'Urgent'. When Priority is set to 'Low', Urgency must be set to 'Normal'.",
+          "inputId": "rbtn-priority-001",
+          "inputName": "Priority",
+          "uiId": "cda-template-create-task-001",
+          "event": "onchange"
+        },
+        "rbtn-priority-onload-001": {
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Priority radio group must display the options Low, Medium, High, and Critical. By default, 'Medium' must be selected. All roles must be allowed to edit it.",
+          "id": "rbtn-priority-onload-001",
+          "inputName": "Priority",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload",
+          "inputId": "rbtn-priority-001"
+        }
+      },
+      "fkGroupId": "grp-assignment-priority-001",
+      "hasLabel": true
+    },
+    "img-cover-screenshot-001": {
+      "css": {
+        "componentCss": ""
+      },
+      "order": 21,
+      "inputName": "Cover / Screenshot",
+      "componentType": "img",
+      "fkGroupId": "grp-attachments-links-001",
+      "id": "img-cover-screenshot-001",
+      "manualDescription": {
+        "img-cover-onload-001": {
+          "event": "onload",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Cover / Screenshot",
+          "inputId": "img-cover-screenshot-001",
+          "description": "When the page loads, the Cover / Screenshot image component must be displayed with an empty placeholder. All roles must be allowed to enter an image URL.",
+          "uiName": "CDA Template - Create Task",
+          "id": "img-cover-onload-001"
+        },
+        "img-cover-onchange-001": {
+          "inputId": "img-cover-screenshot-001",
+          "uiId": "cda-template-create-task-001",
+          "event": "onchange",
+          "inputName": "Cover / Screenshot",
+          "id": "img-cover-onchange-001",
+          "description": "When an image URL is entered, the image must immediately be shown as a preview. If the URL is invalid or the image cannot be loaded, a default placeholder image must be displayed.",
+          "uiName": "CDA Template - Create Task"
+        }
+      },
+      "hasLabel": true,
+      "fkTableId": "",
+      "inputType": "IN",
+      "cellNo": "12",
+      "templateDescription": {
+        "img-cover-tpl-001": {
+          "id": "img-cover-tpl-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "Is Editable - All Roles",
+          "inputId": "img-cover-screenshot-001",
+          "inputName": "Cover / Screenshot",
+          "uiId": "cda-template-create-task-001"
+        }
+      },
+      "content": ""
+    },
+    "grp-assignment-priority-001": {
+      "fkTableId": "",
+      "inputType": "GRP",
+      "cellNo": "12",
+      "templateDescription": {},
+      "content": "",
+      "order": 7,
+      "css": {
+        "componentCss": ""
+      },
+      "componentType": "grp",
+      "inputName": "Assignment & Priority",
+      "id": "grp-assignment-priority-001",
+      "manualDescription": {
+        "grp-assignment-onload-001": {
+          "inputId": "grp-assignment-priority-001",
+          "inputName": "Assignment & Priority",
+          "event": "onload",
+          "uiId": "cda-template-create-task-001",
+          "id": "grp-assignment-onload-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Assignment & Priority group must be visible. This group manages who the task is assigned to, its priority, status, urgency, and story points. For the User role, the Assigned To and Story Points fields must be completely hidden."
+        }
+      },
+      "fkGroupId": "",
+      "hasLabel": true
+    },
+    "grp-basic-info-001": {
+      "content": "",
+      "inputType": "GRP",
+      "cellNo": "12",
+      "templateDescription": {},
+      "fkTableId": "",
+      "hasLabel": true,
+      "id": "grp-basic-info-001",
+      "manualDescription": {
+        "grp-basic-info-onload-001": {
+          "inputId": "grp-basic-info-001",
+          "inputName": "Basic Information",
+          "event": "onload",
+          "uiId": "cda-template-create-task-001",
+          "id": "grp-basic-info-onload-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Basic Information group must be visible. This group covers the main identification details of the task: Task Title, Description, Project, Sprint, and Task Type."
+        }
+      },
+      "fkGroupId": "",
+      "componentType": "grp",
+      "inputName": "Basic Information",
+      "order": 1,
+      "css": {
+        "componentCss": ""
+      }
+    },
+    "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_1": {
+      "fkGroupId": null,
+      "id": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_1",
+      "manualDescription": {
+        "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_1_manual_ai": {
+          "id": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_1_manual_ai",
+          "order": 1,
+          "description": "User enters date here. This field is mandatory.",
+          "inputId": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_1",
+          "uiId": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a",
+          "event": "",
+          "inputName": "Date"
+        }
+      },
+      "fkUserStoryId": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a",
+      "displayIndex": "1",
+      "hasLabel": true,
+      "css": {
+        "componentCss": "",
+        "containerCss": ""
+      },
+      "order": 1,
+      "inputName": "Date",
+      "componentType": "date",
+      "content": "",
+      "isMandatory": true,
+      "apiCall": {},
+      "description": "User enters date here. This field is mandatory.",
+      "fkTableId": null,
+      "cellNo": "6",
+      "databaseRelation": {},
+      "inputType": "IN"
+    },
+    "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_3": {
+      "css": {
+        "containerCss": "",
+        "componentCss": ""
+      },
+      "order": 3,
+      "inputName": "Search",
+      "componentType": "txt",
+      "fkGroupId": null,
+      "manualDescription": {
+        "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_3_manual_ai": {
+          "inputName": "Search",
+          "event": "",
+          "uiId": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a",
+          "inputId": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_3",
+          "description": "User enters search here. This field is mandatory.",
+          "order": 1,
+          "id": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_3_manual_ai"
+        }
+      },
+      "id": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_3",
+      "displayIndex": "3",
+      "fkUserStoryId": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a",
+      "hasLabel": true,
+      "description": "User enters search here. This field is mandatory.",
+      "fkTableId": null,
+      "cellNo": "6",
+      "inputType": "IN",
+      "databaseRelation": {},
+      "content": "",
+      "isMandatory": true,
+      "apiCall": {}
+    },
+    "cmb-sprint-001": {
+      "content": "Sprint 1\nSprint 2\nSprint 3\nSprint 4",
+      "fkTableId": "",
+      "cellNo": "4",
+      "inputType": "IN",
+      "templateDescription": {
+        "cmb-sprint-tpl-001": {
+          "id": "cmb-sprint-tpl-001",
+          "description": "Is Editable - All Roles",
+          "uiName": "CDA Template - Create Task",
+          "inputId": "cmb-sprint-001",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Sprint"
+        }
+      },
+      "id": "cmb-sprint-001",
+      "manualDescription": {
+        "cmb-sprint-onchange-001": {
+          "inputId": "cmb-sprint-001",
+          "event": "onchange",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Sprint",
+          "id": "cmb-sprint-onchange-001",
+          "description": "When a Sprint is selected, the Start Date and Due Date fields must be auto-filled based on the selected sprint’s start and end dates.",
+          "uiName": "CDA Template - Create Task"
+        },
+        "cmb-sprint-onload-001": {
+          "inputId": "cmb-sprint-001",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload",
+          "inputName": "Sprint",
+          "id": "cmb-sprint-onload-001",
+          "description": "When the page loads, the Sprint dropdown must show the active sprints related to the selected project. If no project is selected, Sprint must remain empty and disabled.",
+          "uiName": "CDA Template - Create Task"
+        }
+      },
+      "fkGroupId": "grp-basic-info-001",
+      "hasLabel": true,
+      "order": 5,
+      "css": {
+        "componentCss": ""
+      },
+      "componentType": "cmb",
+      "inputName": "Sprint"
+    },
+    "cmb-status-001": {
+      "css": {
+        "componentCss": ""
+      },
+      "order": 3,
+      "inputName": "Status",
+      "componentType": "cmb",
+      "fkGroupId": "grp-assignment-priority-001",
+      "manualDescription": {
+        "cmb-status-onchange-001": {
+          "inputName": "Status",
+          "event": "onchange",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "cmb-status-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When Status is changed to 'Done', it must be checked whether all Definition of Done checkboxes are selected. If not all checkboxes are selected, the user must be shown a warning.",
+          "id": "cmb-status-onchange-001"
+        },
+        "cmb-status-onload-001": {
+          "id": "cmb-status-onload-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Status dropdown must contain the options To Do, In Progress, Review, and Done. For a newly created task, the default value must be 'To Do'.",
+          "inputId": "cmb-status-001",
+          "inputName": "Status",
+          "event": "onload",
+          "uiId": "cda-template-create-task-001"
+        }
+      },
+      "id": "cmb-status-001",
+      "hasLabel": true,
+      "fkTableId": "",
+      "templateDescription": {
+        "cmb-status-tpl-001": {
+          "inputName": "Status",
+          "uiId": "cda-template-create-task-001",
+          "inputId": "cmb-status-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "Is Editable - All Roles",
+          "id": "cmb-status-tpl-001"
+        }
+      },
+      "inputType": "IN",
+      "cellNo": "4",
+      "content": "To Do\nIn Progress\nReview\nDone"
+    },
+    "ytube-demo-video-001": {
+      "content": "",
+      "fkTableId": "",
+      "inputType": "IN",
+      "cellNo": "12",
+      "templateDescription": {
+        "ytube-demo-tpl-001": {
+          "id": "ytube-demo-tpl-001",
+          "description": "Is Hidden - Manager Role / Is Hidden - User Role",
+          "uiName": "CDA Template - Create Task",
+          "inputId": "ytube-demo-video-001",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Demo Video Link"
+        }
+      },
+      "id": "ytube-demo-video-001",
+      "manualDescription": {
+        "ytube-demo-onchange-001": {
+          "inputId": "ytube-demo-video-001",
+          "inputName": "Demo Video Link",
+          "event": "onchange",
+          "uiId": "cda-template-create-task-001",
+          "id": "ytube-demo-onchange-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When a YouTube URL is entered, the video ID must be extracted and an inline embed player must be displayed. Only youtube.com and youtu.be URLs must be accepted. An error message must be shown for invalid URLs."
+        },
+        "ytube-demo-onload-001": {
+          "inputName": "Demo Video Link",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload",
+          "inputId": "ytube-demo-video-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When the page loads, the Demo Video Link component must be shown only for the Admin role. For Manager and User roles, this component must be completely hidden and must not be rendered.",
+          "id": "ytube-demo-onload-001"
+        }
+      },
+      "fkGroupId": "grp-attachments-links-001",
+      "hasLabel": true,
+      "order": 22,
+      "css": {
+        "componentCss": ""
+      },
+      "componentType": "ytube",
+      "inputName": "Demo Video Link"
+    },
+    "grp-checklist-001": {
+      "fkTableId": "",
+      "templateDescription": {},
+      "inputType": "GRP",
+      "cellNo": "12",
+      "content": "",
+      "order": 23,
+      "css": {
+        "componentCss": ""
+      },
+      "componentType": "grp",
+      "inputName": "Checklist",
+      "manualDescription": {
+        "grp-checklist-onload-001": {
+          "id": "grp-checklist-onload-001",
+          "description": "When the page loads, the Checklist group must be visible. This group manages the task completion criteria: it includes the Has Subtasks checkbox, the Definition of Done inner checkbox group, and the auto-generated Task ID label.",
+          "uiName": "CDA Template - Create Task",
+          "inputId": "grp-checklist-001",
+          "event": "onload",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Checklist"
+        }
+      },
+      "id": "grp-checklist-001",
+      "fkGroupId": "",
+      "hasLabel": true
+    },
+    "533d46f4-2004-4710-8270-01826587ac66": {
+      "fkTableId": "",
+      "order": 32,
+      "inputType": "IN",
+      "componentType": "btn",
+      "cellNo": "3",
+      "inputName": "Cancel",
+      "id": "533d46f4-2004-4710-8270-01826587ac66",
+      "content": "",
+      "hasLabel": true,
+      "fkUserStoryId": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a"
+    },
+    "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_2": {
+      "componentType": "txa",
+      "inputName": "Description",
+      "order": 2,
+      "css": {
+        "containerCss": "",
+        "componentCss": ""
+      },
+      "hasLabel": true,
+      "fkUserStoryId": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a",
+      "displayIndex": "2",
+      "manualDescription": {
+        "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_2_manual_ai": {
+          "inputId": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_2",
+          "inputName": "Description",
+          "uiId": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a",
+          "event": "",
+          "order": 1,
+          "id": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_2_manual_ai",
+          "description": "User enters description here. This field is mandatory."
+        }
+      },
+      "id": "2a7c6ac5-2a8a-4aaf-b674-a408e1cefb4a_ai_2",
+      "fkGroupId": null,
+      "databaseRelation": {},
+      "cellNo": "12",
+      "inputType": "IN",
+      "fkTableId": null,
+      "description": "User enters description here. This field is mandatory.",
+      "apiCall": {},
+      "isMandatory": true,
+      "content": ""
+    },
+    "tbl-subtasks-001": {
+      "content": "",
+      "inputType": "TBL",
+      "cellNo": "12",
+      "templateDescription": {
+        "tbl-subtasks-tpl-001": {
+          "inputId": "tbl-subtasks-001",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Subtasks",
+          "id": "tbl-subtasks-tpl-001",
+          "description": "Is Readonly - User Role",
+          "uiName": "CDA Template - Create Task"
+        }
+      },
+      "fkTableId": "",
+      "hasLabel": false,
+      "id": "tbl-subtasks-001",
+      "manualDescription": {
+        "tbl-subtasks-onclick-001": {
+          "description": "When a row in the Subtasks table is clicked, the details of that subtask must be shown in a separate panel or modal. For the User role, no interactive element in the table must be active.",
+          "uiName": "CDA Template - Create Task",
+          "id": "tbl-subtasks-onclick-001",
+          "event": "onclick",
+          "uiId": "cda-template-create-task-001",
+          "inputName": "Subtasks",
+          "inputId": "tbl-subtasks-001"
+        },
+        "tbl-subtasks-onload-001": {
+          "inputId": "tbl-subtasks-001",
+          "inputName": "Subtasks",
+          "uiId": "cda-template-create-task-001",
+          "event": "onload",
+          "id": "tbl-subtasks-onload-001",
+          "uiName": "CDA Template - Create Task",
+          "description": "When Has Subtasks is checked, the Subtasks table must be shown with an empty row. The table columns must be: Title, Assignee, Status, and Due Date. Admin and Manager can add, delete, and edit rows. The User role can only view existing rows."
+        }
+      },
+      "fkGroupId": "grp-subtasks-table-001",
+      "componentType": "tbl",
+      "inputName": "Subtasks",
+      "order": 28,
+      "css": {
+        "componentCss": ""
+      }
+    }
+  },
+  "input_component_types": [
+    {
+      "code": "txt",
+      "name": "Edit Line",
+      "description": "Single line text input"
+    },
+    {
+      "code": "cmb",
+      "name": "Select",
+      "description": "Dropdown input for selecting one option from a predefined list"
+    },
+    {
+      "code": "btn",
+      "name": "Button",
+      "description": "Action button for submit, save, create, cancel, or other triggers"
+    },
+    {
+      "code": "txa",
+      "name": "Textarea",
+      "description": "Multi-line text input for longer content"
+    },
+    {
+      "code": "rbtn",
+      "name": "Radio",
+      "description": "Radio group for choosing one option from multiple choices"
+    },
+    {
+      "code": "cbox",
+      "name": "Checkbox",
+      "description": "Checkbox input for boolean or multiple selectable options"
+    },
+    {
+      "code": "date",
+      "name": "Date Picker",
+      "description": "Input component for selecting a date"
+    },
+    {
+      "code": "time",
+      "name": "Time Picker",
+      "description": "Input component for selecting a time"
+    },
+    {
+      "code": "lbl",
+      "name": "Label",
+      "description": "Read-only text or system-generated display field"
+    },
+    {
+      "code": "icbox",
+      "name": "Inner Checkbox",
+      "description": "Single inline checkbox item used inside checklist-style content"
+    },
+    {
+      "code": "file",
+      "name": "File Picker",
+      "description": "Component for uploading or selecting files"
+    },
+    {
+      "code": "hlink",
+      "name": "Hyperlink",
+      "description": "Clickable link field for URLs or external references"
+    },
+    {
+      "code": "img",
+      "name": "Image",
+      "description": "Image display or preview component"
+    },
+    {
+      "code": "tbl",
+      "name": "Table",
+      "description": "Table container for row-based structured data"
+    },
+    {
+      "code": "grp",
+      "name": "Group",
+      "description": "Layout group container for organizing related components"
+    },
+    {
+      "code": "ytube",
+      "name": "YouTube",
+      "description": "Embedded YouTube video component"
+    }
+  ]
+}
+

@@ -1,0 +1,702 @@
+rules_version = '2';
+
+// ==========================================
+// FIRESTORE RULES - PRODUCTION VERSION (FIXED)
+// ==========================================
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ------------------------------------------
+    // System Admin Helpers
+    // ------------------------------------------
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function currentEmail() {
+      return request.auth.token.email;
+    }
+
+    function isBootstrapSystemAdmin() {
+      return isSignedIn() &&
+      currentEmail() != null &&
+      currentEmail() == "me@anarrustamov.com";
+    }
+
+    function isSystemAdmin() {
+      return isSignedIn() && (
+        isBootstrapSystemAdmin() ||
+        (
+          currentEmail() != null &&
+          exists(/databases/$(database)/documents/system_admins/$(currentEmail()))
+        )
+      );
+    }
+
+    // ------------------------------------------
+    // Global Admin Override (DEV only)
+    // ------------------------------------------
+    match /{document=**} {
+      allow read, write: if request.auth != null &&
+        exists(/databases/$(database)/documents/dev_stack_admins/$(request.auth.uid));
+    }
+
+    // ------------------------------------------
+    // Project Management
+    // ------------------------------------------
+    match /projects/{projectId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /project_permissions/{projectId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /user_project_permissions/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /user_projects/{userId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /user_permissions/{userId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /project_roles/{projectId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /project_module_permission/{projectId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /project_create_access/{uid} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ==========================================
+    // PROJECT_USERS
+    // ==========================================
+    match /project_users/{userId} {
+      allow read: if isSignedIn();
+      allow get: if true;
+      
+      allow create: if isSignedIn() && (
+        (request.auth.uid == userId &&
+         request.resource.data.invitationId is string &&
+         exists(/databases/$(database)/documents/temporary_invitations/$(request.resource.data.invitationId)) &&
+         get(/databases/$(database)/documents/temporary_invitations/$(request.resource.data.invitationId)).data.email == request.auth.token.email &&
+         get(/databases/$(database)/documents/temporary_invitations/$(request.resource.data.invitationId)).data.role == "project_user") ||
+        (isSystemAdmin() && request.resource.data.uid == userId)
+      );
+      
+      allow update: if isSignedIn() && request.auth.uid == userId;
+      allow delete: if isSystemAdmin();
+    }
+
+    match /project_default_modules/{uid} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /counters/{counterId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ------------------------------------------
+    // Public Collections (no auth required)
+    // ------------------------------------------
+    match /database_canvas/{docId} {
+      allow read, write: if true;
+    }
+
+    match /api_test_canvas/{documentId} {
+      allow read, write: if true;
+    }
+
+    match /html-codes/{id} {
+      allow read, write: if true;
+    }
+
+    match /stress-testing-mock-tasks/{docId} {
+      allow read, write: if true;
+    }
+
+    match /home_page/{docId=**} {
+      allow read, write: if true;
+    }
+
+    match /exam/{document=**} {
+      allow read: if true;
+    }
+
+    match /exam_catagory/{document=**} {
+      allow read: if true;
+    }
+
+    match /pull_requests/{document=**} {
+      allow read, write: if true;
+    }
+
+    match /testing_script/{document} {
+      allow read: if true;
+    }
+
+    match /testing_script/{document}/{subcollection=**} {
+      allow read: if true;
+    }
+
+    // ------------------------------------------
+    // Public Read Collections (Education)
+    // ------------------------------------------
+    match /classes/{document=**} {
+      allow read, write: if true;
+    }
+
+    match /class_lessons/{document=**} {
+      allow read: if true;
+    }
+
+    match /my_courses/{document=**} {
+      allow read: if true;
+    }
+
+    match /class_coach_permission/{document=**} {
+      allow read: if true;
+    }
+
+    match /my_classes/{document=**} {
+      allow read: if true;
+    }
+
+    match /courses/{document=**} {
+      allow read: if true;
+    }
+
+    match /lessons/{document=**} {
+      allow read: if true;
+    }
+
+    match /profiles/{document=**} {
+      allow read: if true;
+    }
+
+    match /cohort_permissions/{document=**} {
+      allow read: if true;
+    }
+
+    match /cohorts/{document=**} {
+      allow read: if true;
+    }
+
+    match /class_users/{document=**} {
+      allow read: if true;
+    }
+
+    match /enrollemnts/{document=**} {
+      allow read: if true;
+    }
+
+    match /enrollments_exams/{document=**} {
+      allow read: if true;
+    }
+
+    // ------------------------------------------
+    // Questions
+    // ------------------------------------------
+    match /questions/{question} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && (
+        (request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'title',
+          'description',
+          'updatedAt'
+        ])) ||
+        (request.auth.uid == resource.data.uid &&
+         !('views' in request.resource.data)) ||
+        (request.resource.data.views == resource.data.views + 1 &&
+         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['views'])) ||
+        exists(/databases/$(database)/documents/dev_stack_admins/$(request.auth.uid))
+      );
+      allow delete: if request.auth != null &&
+        request.auth.uid == resource.data.uid;
+    }
+
+    // ------------------------------------------
+    // Tags
+    // ------------------------------------------
+    match /tags/{tag} {
+      allow read: if true;
+      allow create, update: if request.auth != null;
+      allow delete: if false;
+    }
+
+    // ------------------------------------------
+    // Admins
+    // ------------------------------------------
+    match /dev_stack_admins/{admin} {
+      allow read: if true;
+      allow create: if request.auth != null &&
+        exists(/databases/$(database)/documents/dev_stack_admins/$(request.auth.uid));
+      allow update, delete: if request.auth != null &&
+        exists(/databases/$(database)/documents/dev_stack_admins/$(request.auth.uid));
+    }
+
+    // ------------------------------------------
+    // Answers
+    // ------------------------------------------
+    match /answers/{answer} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && (
+        (request.auth.uid == resource.data.uid &&
+         request.resource.data.content != resource.data.content) ||
+        (request.resource.data.votes == resource.data.votes + 1 &&
+         request.resource.data.content == resource.data.content &&
+         request.resource.data.uid == resource.data.uid) ||
+        resource.data.uid == 'ai-assistant'
+      );
+      allow delete: if request.auth != null && (
+        request.auth.uid == resource.data.uid ||
+        resource.data.uid == 'ai-assistant'
+      );
+    }
+
+    // ------------------------------------------
+    // Comments
+    // ------------------------------------------
+    match /comments/{comment} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && (
+        request.auth.uid == resource.data.uid ||
+        exists(/databases/$(database)/documents/dev_stack_admins/$(request.auth.uid)) ||
+        (request.resource.data.keys().hasOnly(['status']) &&
+         (request.resource.data.status == 'reported' ||
+          request.resource.data.status == 'deactivated')) ||
+        (request.resource.data.keys().hasOnly(['reported'])) ||
+        (request.resource.data.keys().hasOnly(['status', 'reported']) &&
+         (request.resource.data.status == 'reported' ||
+          request.resource.data.status == 'deactivated'))
+      );
+      allow delete: if request.auth != null && (
+        request.auth.uid == resource.data.uid ||
+        exists(/databases/$(database)/documents/dev_stack_admins/$(request.auth.uid))
+      );
+    }
+
+    // ------------------------------------------
+    // Reports
+    // ------------------------------------------
+    match /reports/{report} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null &&
+        exists(/databases/$(database)/documents/dev_stack_admins/$(request.auth.uid));
+    }
+
+    // ==========================================
+    // USERS
+    // ==========================================
+    match /users/{userId} {
+      allow read: if true;
+      allow create, update: if request.auth != null && request.auth.uid == userId;
+      allow delete: if false;
+    }
+
+    // ==========================================
+    // SYSTEM_ADMINS - FIXED FOR DIRECT ADD
+    // ==========================================
+    match /system_admins/{adminEmail} {
+      // Read access - everyone can read
+      allow read: if true;
+      allow get: if true;
+      allow list: if true;
+      
+      // CREATE - Direct add by system admin (NO INVITATION REQUIRED)
+      allow create: if isSignedIn() && isSystemAdmin();
+      
+      // UPDATE - Only system admin
+      allow update: if isSignedIn() && isSystemAdmin();
+      
+      // DELETE - Only system admin
+      allow delete: if isSignedIn() && isSystemAdmin();
+    }
+    
+// ==========================================
+// PROJECT_ADMINS: Auth olmadan READ, ancaq WRITE üçün auth LAZIMDIR
+// ==========================================
+match /project_admins/{email} {
+  allow get, list: if true;
+  allow create, update, delete: if isSignedIn() && (
+    isBootstrapSystemAdmin() ||
+    exists(/databases/$(database)/documents/system_admins/$(currentEmail()))
+  );
+}
+
+
+    // ==========================================
+    // TEMPORARY_INVITATIONS
+    // ==========================================
+    match /temporary_invitations/{invitationId} {
+      allow read: if true;
+      allow create: if isSystemAdmin();
+      allow update: if isSignedIn() && (
+        isSystemAdmin() ||
+        (request.auth.token.email != null && 
+         request.auth.token.email == resource.data.email)
+      );
+      allow delete: if isSystemAdmin();
+    }
+
+    match /dev_stack_users/{userId} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    match /usersData/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    match /profile_users/{userId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+
+      match /{subcollection}/{document} {
+        allow read: if true;
+        allow write: if request.auth != null;
+      }
+    }
+
+    match /profile_users_preview/{uid} {
+      allow read, write: if true;
+    }
+
+    match /profile_users_preview_learner/{userId} {
+      allow read: if true;
+      allow write: if true;
+
+      match /{subcollection}/{document} {
+        allow read: if true;
+        allow write: if true;
+      }
+    }
+
+    // ------------------------------------------
+    // Tokens & Permissions
+    // ------------------------------------------
+    match /user_tokens/{userId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /user_current_message/{userId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /user_page_access/{uid} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /user_project_access/{projectId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /user_daily_performance_summary/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ------------------------------------------
+    // GitHub
+    // ------------------------------------------
+    match /github_repositories/{docId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /github_permissions/{docId} {
+      allow read, create, update, delete: if request.auth != null;
+    }
+
+    match /github_project_permissions/{docId} {
+      allow read, create, update, delete: if request.auth != null;
+    }
+
+    match /{collectionId}/{docId} {
+      allow read, write: if request.auth != null && (
+        collectionId.matches('github_repositories.*')
+      );
+    }
+
+    // ------------------------------------------
+    // Canvas Collections
+    // ------------------------------------------
+    match /ui_canvas/{uiCanvasId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    match /ui_canvas_list/{uiCanvasListId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /ui_canvas_github_urls/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /ui_canvas_history/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /ui_canvas_analysis/{canvasId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /api_canvas/{apiCanvasId} {
+      allow read: if request.auth != null ||
+        resource.data.isShared == true;
+      allow write: if request.auth != null;
+    }
+
+    match /api_canvas_github_urls/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /api_canvas_history/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /api_canvas_analysis/{canvasId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /database_canvas_history/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /dataflow_canvas/{canvasId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /dataflow_canvas_history/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /monetization_canvas/{projectId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /monetization_canvas_history/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /collection_canvas/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /collection_canvas_history/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ------------------------------------------
+    // CRD Relations
+    // ------------------------------------------
+    match /crd_relation_ui_canvas/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /crd_relation_api_canvas/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /crd_relations/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /crd_relations_code_count/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /crd_pull_requests/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /crd_history/{projectId}/repos/{repoId}/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /code_reviews/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ------------------------------------------
+    // Backlog & Sprint
+    // ------------------------------------------
+    match /backlog_tasks/{document=**} {
+      allow read, write: if true;
+    }
+
+    match /backlog_counter/{document=**} {
+      allow read, write: if true;
+    }
+
+    match /consultations/{document=**} {
+      allow read, write: if true;
+    }
+
+    match /consultation-datas/{document=**} {
+      allow read, write: if true;
+    }
+
+    match /{collectionId}/{docId} {
+      allow read, write: if request.auth != null && (
+        collectionId.matches('backlog_.*') ||
+        collectionId.matches('sprint_.*') ||
+        collectionId.matches('managment_.*') ||
+        collectionId.matches('product_features_.*') ||
+        collectionId.matches('common_descriptions_.*') ||
+        collectionId.matches('.*_notifications')
+      );
+    }
+
+    // ------------------------------------------
+    // Notifications & Services
+    // ------------------------------------------
+    match /notifications/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /mail/{docId} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if false;
+    }
+
+    match /services/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /external_links/{document} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ------------------------------------------
+    // Environments & API Requests
+    // ------------------------------------------
+    match /environments/{envId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /apiRequests/{req} {
+      allow read, update, delete: if request.auth != null &&
+        resource.data.userId == request.auth.uid;
+      allow create: if request.auth != null &&
+        request.resource.data.userId == request.auth.uid;
+    }
+
+    match /requestHistory/{history} {
+      allow read, update, delete: if request.auth != null &&
+        resource.data.userId == request.auth.uid;
+      allow create: if request.auth != null &&
+        request.resource.data.userId == request.auth.uid;
+    }
+
+    // ------------------------------------------
+    // Enrolments & Surveys
+    // ------------------------------------------
+    match /enrolments/{enrollmentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /surveys/{surveyId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /user_survey/{userSurveyId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /class_survey/{classId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ------------------------------------------
+    // Admin Only
+    // ------------------------------------------
+    match /accessRequests/{requestId} {
+      allow read, write: if request.auth != null &&
+        request.auth.token.isAdmin == true;
+    }
+
+    match /auditLogs/{logId} {
+      allow read, write: if request.auth != null &&
+        request.auth.token.isAdmin == true;
+    }
+
+    // ------------------------------------------
+    // Miscellaneous Authenticated
+    // ------------------------------------------
+    match /gid_camp_steps/{document} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /default_menus/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /skills_categories/{uid} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /user_default_skills/{uid} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /estimates/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /platform_classes/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /platform_lessons/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /platform_lesson_slides/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /platform_slide_content/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /platform_class_users/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /platform_exams/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /platform_exam_results/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /platform_exam_users/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /platform_class_users_tracking/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /platform_class_users_finished/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /platform_pdfs/{id} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

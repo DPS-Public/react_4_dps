@@ -1,0 +1,79 @@
+{
+  "url_link": "https://api.example.com/v1/customers",
+  "input": [
+    {
+      "name": "firstName",
+      "description": "Customer first name to be stored in the new customer record."
+    },
+    {
+      "description": "Customer last name to be stored in the new customer record.",
+      "name": "lastName"
+    },
+    {
+      "description": "Primary email address used for account communication and login notifications.",
+      "name": "email"
+    },
+    {
+      "description": "Mobile phone number that will be associated with the customer profile.",
+      "name": "phoneNumber"
+    },
+    {
+      "description": "Indicates whether the customer agrees to receive promotional communication.",
+      "name": "marketingConsent"
+    }
+  ],
+  "responseBody": "{\r\n  \"success\": true,\r\n  \"message\": \"Customer created successfully.\",\r\n  \"data\": {\r\n    \"customerId\": \"CUST-100246\",\r\n    \"status\": \"active\",\r\n    \"createdAt\": \"2026-04-11T23:40:36.837Z\"\r\n  }\r\n}",
+  "operation": [
+    {
+      "type": "validation",
+      "description": "Validate required fields such as firstName, lastName, and email before processing the request."
+    },
+    {
+      "description": "Check whether the provided email address already exists in the customer database to prevent duplicate accounts.",
+      "type": "selectdata"
+    },
+    {
+      "type": "insertdata",
+      "description": "Create a new customer record and persist personal, contact, and consent information."
+    },
+    {
+      "description": "Build a clean success payload that includes the new customerId, status, and creation timestamp.",
+      "type": "mapping"
+    },
+    {
+      "description": "Serialize the success result as JSON and return it to the frontend consumer.",
+      "type": "json"
+    }
+  ],
+  "output": [
+    {
+      "name": "customerId",
+      "description": "Unique identifier generated for the newly created customer."
+    },
+    {
+      "name": "status",
+      "description": "Current lifecycle state of the created customer record."
+    },
+    {
+      "name": "createdAt",
+      "description": "Timestamp indicating when the customer record was created."
+    }
+  ],
+  "requestBody": "{\r\n  \"firstName\": \"Anar\",\r\n  \"lastName\": \"Rustamov\",\r\n  \"email\": \"anar.rustamov@example.com\",\r\n  \"phoneNumber\": \"+994501234567\",\r\n  \"marketingConsent\": true\r\n}",
+  "name": "Add New Customer",
+  "description": "This API creates a new customer record in the customer management system. It validates the incoming customer payload, prevents duplicate email registration, stores the new profile, and returns the generated customer identifier together with creation metadata.",
+  "updated_at": "2026-04-11T23:40:36.837Z",
+  "params": {},
+  "apiUrl": "https://api.example.com/v1/customers",
+  "type": "api",
+  "id": "54b8b89c-f958-4aed-9ca3-9ec424acb13d",
+  "config": {
+    "filePath": "",
+    "localHeader": "{}",
+    "localUrl": "customers",
+    "method": "POST"
+  },
+  "created_at": "2026-04-11T23:39:11.376Z",
+  "created_by": "cGraXoob53Yz10KUWi4hOv20U673",
+  "projectId": "0g8C6qP1uPIV6TCi1FaC"
+}

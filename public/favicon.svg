@@ -1,0 +1,39 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>DPS Icon</title>
+  <desc>Digital Product Summary icon - summary ring with product screen</desc>
+
+  <rect x="0" y="0" width="200" height="200" rx="32" fill="#1677ff"/>
+
+  <circle cx="100" cy="100" r="82" fill="none" stroke="white" stroke-width="1" opacity="0.12"/>
+
+  <circle cx="100" cy="100" r="72" fill="none" stroke="white" stroke-width="24"
+    stroke-dasharray="272 181" stroke-dashoffset="0" stroke-linecap="butt"/>
+  <circle cx="100" cy="100" r="72" fill="none" stroke="#5aabff" stroke-width="24"
+    stroke-dasharray="99 354" stroke-dashoffset="-280" stroke-linecap="butt"/>
+  <circle cx="100" cy="100" r="72" fill="none" stroke="#aad4ff" stroke-width="24"
+    stroke-dasharray="38 415" stroke-dashoffset="-387" stroke-linecap="butt"/>
+
+  <circle cx="100" cy="100" r="46" fill="#1677ff"/>
+
+  <rect x="70" y="68" width="50" height="40" rx="6" fill="white" opacity="0.22"/>
+  <rect x="76" y="74" width="50" height="40" rx="6" fill="white"/>
+  <rect x="76" y="74" width="50" height="11" rx="6" fill="#1677ff" opacity="0.55"/>
+  <rect x="76" y="80" width="50" height="5" fill="#1677ff" opacity="0.55"/>
+
+  <circle cx="84" cy="79.5" r="2.2" fill="white" opacity="0.85"/>
+  <circle cx="91" cy="79.5" r="2.2" fill="white" opacity="0.85"/>
+  <circle cx="98" cy="79.5" r="2.2" fill="white" opacity="0.85"/>
+
+  <rect x="82" y="92" width="36" height="4" rx="2" fill="#1677ff" opacity="0.4"/>
+  <rect x="82" y="100" width="26" height="4" rx="2" fill="#1677ff" opacity="0.28"/>
+
+  <rect x="82" y="108" width="6" height="5" rx="1.5" fill="#1677ff" opacity="0.55"/>
+  <rect x="91" y="104" width="6" height="9" rx="1.5" fill="#1677ff" opacity="0.75"/>
+  <rect x="100" y="106" width="6" height="7" rx="1.5" fill="#1677ff" opacity="0.55"/>
+  <rect x="109" y="102" width="6" height="11" rx="1.5" fill="#1677ff" opacity="0.8"/>
+
+  <circle cx="100" cy="17" r="5" fill="white"/>
+  <circle cx="172" cy="60" r="5" fill="white" opacity="0.7"/>
+  <circle cx="174" cy="140" r="5" fill="#5aabff"/>
+  <circle cx="26" cy="140" r="5" fill="#aad4ff"/>
+</svg>

@@ -1,0 +1,47 @@
+Firebase Storage Security Rules für langdp-test Projekt
+========================================================
+
+PROBLEM: Firebase-e yüklenən şekillər yüklənmir (resim yüklənmir)
+
+ÇÖZÜM: Firebase Console -> Storage -> Rules bölümünde bu qaydaları istifadə edin
+
+CURRENT (RESTRICTIVE - sadəcə autentifik edilmiş user səbəbində):
+----
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+----
+
+UPDATED (PUBLIC READ - şekillər herkesin görmə sə):
+----
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Hamıya oxuma: hamı rəsim görmə sə, saxlama oxu
+    match /{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}
+----
+
+ADDIM 1: Firebase Console açın
+https://console.firebase.google.com/
+
+ADDIM 2: langdp-test proyektini seçin
+
+ADDIM 3: Storage bölümünə kedin
+
+ADDIM 4: Rules sekmesini aç
+
+ADDIM 5: Yuxarıdakı qaydaları kopyala-yapışdır
+
+ADDIM 6: Dəyişikəti saxla ("Publish" düyməsinə klikləyin)
+
+Bu dəyişiklikdən sonra hamıya şekillər görmə sə mümkün olacaq.

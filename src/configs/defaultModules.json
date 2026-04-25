@@ -1,0 +1,142 @@
+[
+  {
+    "module_id": "dashboard",
+    "module_name": "Dashboard",
+    "status": "active",
+    "is_menu": true,
+    "order": 1,
+    "parent_id": null,
+    "route": "/dashboard"
+  },
+  {
+    "module_id": "ui-editor",
+    "module_name": "UI Editor",
+    "status": "active",
+    "is_menu": true,
+    "order": 2,
+    "parent_id": null,
+    "route": "/ui-editor"
+  },
+  {
+    "module_id": "data-flow",
+    "module_name": "Data Flow",
+    "status": "active",
+    "is_menu": true,
+    "order": 3,
+    "parent_id": null,
+    "route": "/data-flow"
+  },
+   
+  {
+    "module_id": "ui-canvas",
+    "module_name": "UI Canvas",
+    "status": "active",
+    "is_menu": true,
+    "order": 4,
+    "parent_id": null,
+    "route": "/ui-canvas"
+  },
+   
+  {
+    "module_id": "api",
+    "module_name": "API Canvas",
+    "status": "active",
+    "is_menu": true,
+    "order": 5,
+    "parent_id": null,
+    "route": "/api"
+  },
+  {
+    "module_id": "api-testing",
+    "module_name": "API Testing",
+    "status": "active",
+    "is_menu": true,
+    "order": 6,
+    "parent_id": null,
+    "route": "/api-testing"
+  },
+  {
+    "module_id": "code-builder",
+    "module_name": "Code Builder",
+    "status": "active",
+    "is_menu": true,
+    "order": 8,
+    "parent_id": null,
+    "route": "/code-builder"
+  },
+  {
+    "module_id": "backlog-canvas",
+    "module_name": "Backlog Canvas",
+    "status": "active",
+    "is_menu": true,
+    "order": 7,
+    "parent_id": null,
+    "route": "/backlog-canvas"
+  },
+  
+ 
+  {
+    "module_id": "settings/github-repositories",
+    "module_name": "GitHub Repositories",
+    "status": "active",
+    "is_menu": true,
+    "order": 17,
+    "parent_id": null,
+    "route": "/settings/github-repositories"
+  } ,
+  {
+    "module_id": "analytics",
+    "module_name": "Analytics",
+    "status": "active",
+    "is_menu": true,
+    "order": 50,
+    "parent_id": null,
+    "route": "/analytics"
+  },
+  
+  {
+    "module_id": "ui_canvas_reports",
+    "module_name": "UI Canvas Reports",
+    "status": "active",
+    "is_menu": true,
+    "order": 51,
+    "parent_id": "analytics",
+    "route": "/ui-canvas-reports"
+  },
+  {
+    "module_id": "assignee_analytics",
+    "module_name": "Assignee Analytics",
+    "status": "active",
+    "is_menu": true,
+    "order": 53,
+    "parent_id": "analytics",
+    "route": "/assignee-analytics"
+  },
+  {
+    "module_id": "ui_canvas_analytics",
+    "module_name": "UI Canvas Analytics",
+    "status": "active",
+    "is_menu": true,
+    "order": 52,
+    "parent_id": "analytics",
+    "route": "/ui-canvas-analytics"
+  },
+   {
+    "module_id": "settings/user-management-settings",
+    "module_name": "User Management",
+    "status": "active",
+    "is_menu": true,
+    "order": 900,
+    "parent_id": null,
+    "route": "/settings/user-management-settings"
+  },
+   {
+    "module_id": "system_settings",
+    "module_name": "System Settings",
+    "status": "active",
+    "is_menu": true,
+    "order": 903,
+    "parent_id": null,
+    "route": "/system-settings"
+  }
+]

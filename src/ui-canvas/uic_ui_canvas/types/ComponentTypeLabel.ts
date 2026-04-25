@@ -1,0 +1,18 @@
+export const ComponentTypeLabel = {
+  txt: "Edit Line",
+  cmb: "Select Box",
+  btn: "Button",
+  txa: "Textarea",
+  rbtn: "Radio Button",
+  cbox: "Check Box",
+  icbox: "Inner Check Box",
+  date: "Date Picker",
+  time: "Time Picker",
+  lbl: "Label",
+  file: "File Picker",
+  hlink: "Hyperlink",
+  img: "Image",
+  tbl: "Table",
+  grp: "Group",
+  ytube: "You Tube",
+};

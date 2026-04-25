@@ -1,0 +1,788 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --app-font-family: "TT Fors", "TT Firs Neue", "Segoe UI", sans-serif;
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+
+        --primary: 222.2 47.4% 11.2%;
+        --primary-foreground: 210 40% 98%;
+
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 222.2 84% 4.9%;
+
+        --radius: 0.5rem;
+
+        --sidebar-background: 0 0% 98%;
+
+        --sidebar-foreground: 240 5.3% 26.1%;
+
+        --sidebar-primary: 240 5.9% 10%;
+
+        --sidebar-primary-foreground: 0 0% 98%;
+
+        --sidebar-accent: 240 4.8% 95.9%;
+
+        --sidebar-accent-foreground: 240 5.9% 10%;
+
+        --sidebar-border: 220 13% 91%;
+
+        --sidebar-ring: 217.2 91.2% 59.8%;
+    }
+
+    .dark {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+
+        --primary: 210 40% 98%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 212.7 26.8% 83.9%;
+        --sidebar-background: 240 5.9% 10%;
+        --sidebar-foreground: 240 4.8% 95.9%;
+        --sidebar-primary: 224.3 76.3% 48%;
+        --sidebar-primary-foreground: 0 0% 100%;
+        --sidebar-accent: 240 3.7% 15.9%;
+        --sidebar-accent-foreground: 240 4.8% 95.9%;
+        --sidebar-border: 240 3.7% 15.9%;
+        --sidebar-ring: 217.2 91.2% 59.8%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-family: var(--app-font-family);
+        overflow: hidden;
+        height: 100vh;
+    }
+    
+    html {
+        overflow: hidden;
+        height: 100%;
+    }
+    
+    #root {
+        height: 100vh;
+        overflow: hidden;
+    }
+}
+
+html,
+body,
+#root,
+.ant-typography,
+.ant-btn,
+.ant-input,
+.ant-select,
+.ant-picker,
+.ant-drawer,
+.ant-modal,
+.ant-table,
+.ant-form,
+.ant-menu,
+.ant-tabs,
+.ant-card {
+    font-family: var(--app-font-family) !important;
+}
+
+.monetization-canvas-table th.th-period {
+    cursor: move !important;
+}
+
+.edit-endpoint-modal .ant-modal-header {
+    border-bottom: 1px solid #f0f0f0; /* gri çizgi */
+    padding-bottom: 12px; /* biraz boşluk */
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.edit-endpoint-modal .ant-modal-content {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.edit-endpoint-modal .ant-modal-body {
+    padding-right: 24px;
+    padding-left: 24px;
+}
+
+.new-api-modal .ant-modal-header {
+    border-bottom: 1px solid #f0f0f0; /* gri çizgi */
+    padding-bottom: 12px; /* biraz boşluk */
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.new-api-modal .ant-modal-content {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.new-api-modal .ant-modal-body {
+    padding-right: 24px;
+    padding-left: 24px;
+}
+
+.new-api-modal .ant-modal-footer {
+    padding-right: 24px;
+    padding-left: 24px;
+}
+.modal-bottom-border .ant-modal-header{
+    border-bottom: 1px solid #f0f0f0; /* gri çizgi */
+    padding-bottom: 12px; /* biraz boşluk */
+    padding-left: 24px;
+    padding-right: 24px;
+}
+.modal-bottom-border .ant-modal-content {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.modal-bottom-border .ant-modal-body {
+    padding-right: 24px;
+    padding-left: 24px;
+}
+
+.modal-bottom-border .ant-modal-footer {
+    padding-right: 24px;
+    padding-left: 24px;
+}
+.duplicate-api-modal .ant-modal-header {
+    border-bottom: 1px solid #f0f0f0; /* gri çizgi */
+    padding-bottom: 12px; /* biraz boşluk */
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.duplicate-api-modal .ant-modal-content {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.duplicate-api-modal .ant-modal-body {
+    padding-right: 24px;
+    padding-left: 24px;
+}
+
+.duplicate-api-modal .ant-modal-footer {
+    padding-right: 24px;
+    padding-left: 24px;
+}
+.react-resizable {
+  position: relative;
+}
+
+.react-resizable-handle {
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  bottom: 0;
+  right: -5px;
+  cursor: col-resize;
+  z-index: 1;
+}
+
+.react-resizable-handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 3px;
+  transform: translateY(-50%);
+  height: 100%;
+  width: 2px;
+  background-color: #d9d9d9;
+  border-radius: 1px;
+}
+
+.react-resizable-handle:hover::after {
+  background-color: #1890ff;
+}
+.ant-table-thead > tr > th {
+  position: relative;
+}
+.custom-table .ant-table-tbody > tr > td,
+.custom-table .ant-table-thead > tr  {
+  padding: 0 10px;
+  border-right: 1px solid #f0f0f0;
+}
+.custom-table .ant-table-tbody > tr > td:last-child,
+.custom-table .ant-table-thead > tr {
+  border-right: none;
+}
+.custom-table .ant-table-thead > tr > th {
+  font-size: 12px;
+  font-weight: 600;
+}
+.custom-table .ant-table-tbody > tr > td,
+.custom-table .ant-table-thead > tr > th {
+  border-right: 1px solid #e0e0e0;
+  transition: border-color 0.2s, border-width 0.2s;
+}
+
+.custom-table .resizing-column {
+  border-right: 4px solid #1890ff !important;
+}
+
+.ant-dropdown-open .dropdown-arrow {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown-arrow {
+    transition: transform 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    display: inline-flex;
+    width: 10px;
+    min-width: 10px;
+    margin-right: 3px;
+}
+
+.dropdown-tag:hover .dropdown-arrow {
+    opacity: 1;
+    visibility: visible;
+}
+
+.issue-dragger-animated.ant-upload-wrapper .ant-upload-drag {
+    border: 1px dashed rgba(22, 119, 255, 0.25);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.issue-dragger-animated.ant-upload-wrapper:hover .ant-upload-drag,
+.issue-dragger-animated.ant-upload-wrapper .ant-upload-drag-hover {
+    border-color: #1677ff;
+    box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.12) inset;
+    background-image: repeating-linear-gradient(
+        90deg,
+        rgba(22, 119, 255, 0.18) 0,
+        rgba(22, 119, 255, 0.18) 8px,
+        transparent 8px,
+        transparent 16px
+    );
+    background-size: 200% 100%;
+    animation: issue-dragger-dash 1.2s linear infinite;
+}
+
+@keyframes issue-dragger-dash {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 32px 0;
+    }
+}
+.no-scroll-calendar .ant-picker-calendar {
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.no-scroll-calendar .ant-picker-panel {
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.no-scroll-calendar .ant-picker-body {
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.no-scroll-calendar .ant-picker-content {
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.no-scroll-calendar .ant-picker-cell {
+    height: auto !important;
+    min-height: 120px !important;
+    overflow: visible !important;
+    vertical-align: top !important; 
+}
+
+.no-scroll-calendar .ant-picker-cell-inner {
+    height: auto !important; 
+    min-height: 120px !important;
+    overflow: visible !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    justify-content: flex-start; 
+}
+.no-scroll-calendar .ant-picker-cell-inner .ant-picker-calendar-date {
+    height: auto !important; 
+    min-height: 120px !important;
+    overflow: visible !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.no-scroll-calendar .ant-picker-cell-inner .ant-picker-calendar-date-content {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: relative;
+    flex: 1; 
+    width: 100%;
+}
+
+.no-scroll-calendar .events-container {
+    max-height: none !important;
+    overflow: visible !important;
+    height: auto !important;
+    width: 100%;
+    flex: 1;
+}
+.no-scroll-calendar .ant-picker-cell-inner::before {
+    height: 0 !important;
+}
+
+.no-scroll-calendar .ant-picker-calendar .ant-picker-cell-inner {
+    padding-bottom: 0 !important;
+}
+.ant-empty-normal{
+    margin-block: 0;
+}
+
+.ui-view-collapse .ant-collapse-header {
+    align-items: center !important;
+    background: rgba(0, 0, 0, 0.02) !important;
+}
+.ui-description-collapse .ant-collapse-header {
+    align-items: center !important;
+    background: rgba(0, 0, 0, 0.02) !important;
+}
+.ui-input-collapse .ant-collapse-header {
+    align-items: center !important;
+    background: rgba(0, 0, 0, 0.02) !important;
+}
+.ui-uac-collapse .ant-collapse-header {
+    align-items: center !important;
+    background: rgba(0, 0, 0, 0.02) !important;
+}
+.ui-uac-collapse .ant-collapse-expand-icon {
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+.backlog-minimal-table .ant-table {
+    font-size: 12px;
+}
+
+.backlog-table-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    min-width: 0;
+}
+
+.backlog-table-scroll-area {
+    flex: 1 1 auto;
+    min-height: 0;
+    min-width: 0;
+    max-width: 100%;
+    max-height: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    scrollbar-width: auto;
+    scrollbar-color: #cbd5e1 #f8fafc;
+    background: #ffffff;
+    padding-left: 0;
+}
+
+.backlog-table-scroll-content {
+    min-width: max-content;
+}
+
+.backlog-table-bottom-panel {
+    position: relative;
+    z-index: 3;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    background: #ffffff;
+    border-top: 1px solid #f1f5f9;
+}
+
+.backlog-table-scroll-area::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.backlog-table-scroll-area::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+    border: 3px solid #ffffff;
+}
+
+.backlog-table-scroll-area::-webkit-scrollbar-track {
+    background: #f8fafc;
+}
+
+.backlog-native-table {
+    width: max-content;
+    min-width: 100%;
+    border-spacing: 0;
+    border-collapse: separate;
+    table-layout: auto;
+}
+
+.backlog-native-table thead th {
+    background: #fafafa;
+    color: #000000;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding: 4px 12px;
+    height: 40px;
+    max-height: 40px;
+    overflow: hidden;
+    border-bottom: 1px solid #e5e7eb;
+    border-right: 1px solid #e0e0e0;
+    white-space: nowrap;
+}
+
+.backlog-native-table tbody td {
+    padding: 4px 12px;
+    max-height: 40px;
+    height: 40px;
+    overflow: hidden;
+    background: #ffffff;
+    text-align: left;
+    color: #000000;
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    vertical-align: middle;
+    background-clip: padding-box;
+}
+
+.backlog-native-table thead th:last-child,
+.backlog-native-table tbody td:last-child {
+    border-right: none;
+}
+
+.backlog-native-table .backlog-selection-column {
+    width: 44px;
+    min-width: 44px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.backlog-native-table .backlog-native-header-cell {
+    position: sticky;
+    top: 0;
+    height: 40px;
+    max-height: 40px;
+}
+
+.backlog-native-table .backlog-native-empty-cell {
+    padding: 32px 16px;
+    text-align: center;
+    color: #94a3b8;
+    background: #ffffff;
+}
+
+.backlog-minimal-table.ant-table-wrapper {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.backlog-minimal-table.ant-table-wrapper .ant-spin-nested-loading,
+.backlog-minimal-table.ant-table-wrapper .ant-spin-container {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.backlog-minimal-table.ant-table-wrapper .ant-table {
+    min-width: 100%;
+}
+
+.backlog-minimal-table.ant-table-wrapper .ant-table-container {
+    min-width: 100%;
+}
+
+.backlog-minimal-table.ant-table-wrapper .ant-table-content {
+    min-width: 100%;
+    overflow: visible !important;
+}
+
+.backlog-table-footer {
+    padding: 0;
+    background: transparent;
+}
+
+.backlog-table-pagination-row {
+    display: flex;
+    justify-content: flex-start;
+    flex: 0 0 auto;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0;
+    background: transparent;
+}
+
+.backlog-table-pagination-row .ant-pagination {
+    margin: 0 !important;
+    justify-content: flex-start;
+}
+
+.backlog-minimal-table .ant-table-tbody .ant-table-measure-row,
+.backlog-minimal-table .ant-table-tbody .ant-table-measure-row > td {
+    height: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+}
+
+.backlog-minimal-table .ant-table table {
+    width: max-content !important;
+    min-width: 100% !important;
+    table-layout: auto !important;
+    border-spacing: 0 !important;
+}
+
+.backlog-minimal-table .ant-table-thead > tr > th {
+    background: #fafafa !important;
+    color: #000000 !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-align: left !important;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+.backlog-minimal-table .ant-table-tbody > tr > td {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    text-align: left !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.backlog-minimal-table .backlog-minimal-row-even > td {
+    background: #ffffff;
+}
+
+.backlog-minimal-table .backlog-minimal-row-odd > td {
+    background: #ffffff;
+}
+
+.backlog-native-table tbody > tr:not(.backlog-row-checked):not(.backlog-row-active):hover > td,
+.backlog-minimal-table .ant-table-tbody > tr:not(.backlog-row-checked):not(.backlog-row-active):hover > td {
+    background: #f3f4f6 !important;
+}
+
+.backlog-native-table tbody > tr.backlog-row-checked > td,
+.backlog-minimal-table .ant-table-tbody > tr.backlog-row-checked > td {
+    background: #eaf2ff !important;
+}
+
+.backlog-native-table tbody > tr.backlog-row-active > td,
+.backlog-minimal-table .ant-table-tbody > tr.backlog-row-active > td {
+    background: #dbeafe !important;
+}
+
+.backlog-native-table tbody > tr > td,
+.backlog-native-table tbody > tr > td *,
+.backlog-minimal-table .ant-table-tbody > tr > td,
+.backlog-minimal-table .ant-table-tbody > tr > td * {
+    font-family: "TT Fors", "TT Firs Neue", "Segoe UI", sans-serif !important;
+}
+
+.backlog-minimal-table .attached-files-cell {
+    vertical-align: middle !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.backlog-minimal-table .attached-files-cell-inner {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.backlog-user-avatar {
+    border: 1px solid #9ca3af;
+}
+
+.backlog-minimal-table .attached-files-cell a,
+.backlog-native-table .attached-files-cell a {
+    color: #000000 !important;
+}
+
+.backlog-minimal-table .attached-files-cell,
+.backlog-native-table .attached-files-cell,
+.backlog-minimal-table .attached-files-cell *,
+.backlog-native-table .attached-files-cell * {
+    color: #000000 !important;
+}
+
+.backlog-minimal-table .attached-files-cell a:visited,
+.backlog-native-table .attached-files-cell a:visited,
+.backlog-minimal-table .attached-files-cell a:hover,
+.backlog-native-table .attached-files-cell a:hover {
+    color: #000000 !important;
+}
+
+.backlog-minimal-table .backlog-column-header-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+}
+
+.backlog-minimal-table .backlog-column-header-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.backlog-minimal-table .backlog-column-drag-handle {
+    display: inline-grid;
+    grid-template-columns: repeat(2, 3px);
+    grid-template-rows: repeat(3, 3px);
+    gap: 1px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    cursor: grab;
+    padding: 1px;
+    border-radius: 4px;
+}
+
+.backlog-minimal-table .backlog-draggable-column:hover .backlog-column-drag-handle {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.backlog-minimal-table .backlog-column-drag-handle:active {
+    cursor: grabbing;
+    transform: scale(0.98);
+}
+
+.backlog-minimal-table .backlog-column-drag-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 9999px;
+    background: #9ca3af;
+}
+
+.backlog-minimal-table .backlog-column-drag-handle:hover .backlog-column-drag-dot {
+    background: #6b7280;
+}
+
+.backlog-native-table thead > tr > th.backlog-drop-target-column,
+.backlog-native-table tbody > tr > td.backlog-drop-target-cell,
+.backlog-minimal-table .ant-table-thead > tr > th.backlog-drop-target-column,
+.backlog-minimal-table .ant-table-tbody > tr > td.backlog-drop-target-cell {
+    position: relative;
+}
+
+.backlog-native-table thead > tr > th.backlog-drop-target-column::after,
+.backlog-native-table tbody > tr > td.backlog-drop-target-cell::before,
+.backlog-minimal-table .ant-table-thead > tr > th.backlog-drop-target-column::after,
+.backlog-minimal-table .ant-table-tbody > tr > td.backlog-drop-target-cell::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 3px;
+    background: #1677ff;
+    animation: backlog-column-drop-indicator 0.9s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes backlog-column-drop-indicator {
+    0% {
+        opacity: 0.45;
+        transform: scaleY(0.96);
+    }
+    50% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    100% {
+        opacity: 0.45;
+        transform: scaleY(0.96);
+    }
+}
+
+.backlog-native-table thead > tr > th.backlog-drop-target-column,
+.backlog-minimal-table .ant-table-thead > tr > th.backlog-drop-target-column {
+    box-shadow: inset 2px 0 0 rgba(22, 119, 255, 0.18);
+}
+
+.backlog-native-table tbody > tr > td.backlog-drop-target-cell,
+.backlog-minimal-table .ant-table-tbody > tr > td.backlog-drop-target-cell {
+    box-shadow: inset 2px 0 0 rgba(22, 119, 255, 0.12);
+}
+
+.backlog-column-drop-line {
+    border-left: solid 2px #1677ff !important;
+    border-bottom: 0 none !important;
+    margin-left: -1px !important;
+}

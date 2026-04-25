@@ -1,0 +1,16 @@
+export const deviceOptions = [
+    { value: "Responsible", label: "Responsible", width: "", height: "" },
+    { value: "galaxy", label: "Galaxy S5", width: 360, height: 640 },
+    { value: "Pixel", label: "Pixel 2", width: 411, height: 731 },
+    { value: "Pixel-2XL", label: "Pixel 2XL", width: 411, height: 823 },
+    { value: "Iphone-5/SE", label: "iPhone 5/SE", width: 320, height: 568 },
+    { value: "Iphone-6/7/8", label: "iPhone 6/7/8", width: 375, height: 667 },
+    { value: "Iphone-6/7/8-PLUS", label: "iPhone 6/7/8 Plus", width: 414, height: 736 },
+    { value: "Iphone-X", label: "iPhone X", width: 375, height: 812 },
+    { value: "Ipad", label: "iPad", width: 768, height: 1024 },
+    { value: "Ipad-Pro", label: "iPad Pro", width: 1024, height: 1366 },
+    { value: "Surface-Duo", label: "Surface Duo", width: 540, height: 720 },
+    { value: "Galaxy-Fold", label: "Galaxy Fold", width: 280, height: 653 },
+    { value: "Nest-Hub", label: "Nest Hub", width: 1024, height: 600 },
+    { value: "Nest-Hub-Max", label: "Nest Hub Max", width: 1280, height: 800 },
+];
