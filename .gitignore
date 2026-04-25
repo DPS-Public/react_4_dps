@@ -32,3 +32,15 @@ dist-ssr
 .env.production
 .env.local
 .env.*.local
+
+# Internal workflows
+.github/workflows/deploy.yml
+.github/workflows/sync-public-main.yml
+
+# Internal and test artifacts
+.codex
+.dependencygraph/
+netlify.toml
+output.json
+test.json
+api_canvas_test.json
